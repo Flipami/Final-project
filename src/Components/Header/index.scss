@@ -1,0 +1,25 @@
+
+.Header{
+    font-family: 'Handlee', cursive;
+    font-size: 60%;
+    text-align: center;
+    background-color: #17B978;
+    height: 20vh;
+    min-height: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: calc(8px + 2vmin);
+    color: #071A52;
+  }
+  
+  .logo {
+    animation: App-logo-spin infinite 20s linear;
+    color:#A7FF83;
+    height: 20vmin;
+  }
+  
+  .title {
+    justify-content: center;
+  }
