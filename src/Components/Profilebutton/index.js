@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
+import React, {Component} from 'react';
+import './index.scss';
 
-class Profilebutton extends Component {
+class ProfileButton extends Component {
   constructor(props) {
     super(props)
     this.state = {}
@@ -10,17 +10,13 @@ class Profilebutton extends Component {
   render() {
     return(
       <div>
-        Hello world from Profilebutton
+        Hello world from ProfileButton
       </div>
     )
   }
 }
 
-Profilebutton.displayName = Profilebutton
+ProfileButton.displayName = ProfileButton
 
-Profilebutton.propTypes = {}
-
-Profilebutton.contextTypes = {}
-
-export default Profilebutton
+export default ProfileButton
 

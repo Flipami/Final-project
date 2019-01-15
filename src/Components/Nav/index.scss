@@ -1,4 +1,19 @@
+.nav_bar {
+  padding:0;
+  margin:0;
+}
 
-.Nav{
-  /* Do your magic :) */
+.news, .jobs, .contact {
+  font-size: bold;
+  padding: 20px;
+  margin: 25px;
+  text-decoration: none;
+}
+.news:hover, .jobs:hover, .contact:hover {
+  background: #A7FF83;
+}
+.wrapper {
+  width: 80%;
+  margin: auto;
+  overflow:hidden;
 }

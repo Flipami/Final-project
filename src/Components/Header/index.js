@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import './index.scss';
 import Nav from '../Nav';
+import ProfileButton from '../ProfileButton';
 
 
 class Header extends Component {
@@ -17,6 +18,7 @@ class Header extends Component {
           Translation auction
         </h1>
         <Nav />
+        <ProfileButton />
       </header>
     )
   }

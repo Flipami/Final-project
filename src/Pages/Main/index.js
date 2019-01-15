@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import './index.scss';
 import DatabaseApi from '../../servicies/dbApi';
-import Nav from '../../Components/Nav';
-import LogIn from '../../Components/Log_in'
+import LogIn from '../../Components/Log_in';
+
 
 class Main extends Component {
     constructor(props){
@@ -14,7 +15,6 @@ class Main extends Component {
     render() {
         return (
             <div>
-                <Nav />
                 <h3> Esta será la página que se vea cuando se cargué mi página.</h3>
                 <LogIn />
             </div>
