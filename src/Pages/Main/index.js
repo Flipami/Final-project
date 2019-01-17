@@ -15,8 +15,13 @@ class Main extends Component {
     render() {
         return (
             <div>
-                <h3> Esta será la página que se vea cuando se cargué mi página.</h3>
-                <LogIn />
+                <h1 className="title">
+                    Translation auction
+                </h1>
+                <p>In this App you would be able to show your interest for the translations that we publish, so if you are available and has experience in the field, you would be able to accept the job with a simple click.
+                <br/>So please log in and add your details, your language combinations and your rates. <br />Keep your profile up to date.
+                </p>             
+                {/*<LogIn />*/}
             </div>
         );
     }

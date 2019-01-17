@@ -4,10 +4,10 @@ import { BrowserRouter as Link } from "react-router-dom";
 class LogIn extends Component {
     constructor(props){
         super(props);
-        state={
+       /* state ={
             email:'',
             password:'',
-        }
+        }*/
     }
 
     handleUserInput (e) {
@@ -17,32 +17,35 @@ class LogIn extends Component {
       }
 
     render() {
-        const { email, password } = this.state;
+        //const { email, password } = this.state;
 
         return (
-
-            <div className="login_box">
+            {/*<form className="login_form">
                 <img src={Login.png} className="login_pic"/>
                 <h1>Login here</h1>
-                <p>Enter your username</p>
-                <input 
-                type="email" 
-                name="" 
-                className="userName" 
-                placeholder="@UserName"
-                value={email}
-                onChange={(event) => this.handleUserInput(event)}>
-                <p>Enter your password</p>
-                <input 
-                type="password" 
-                name="" 
-                className="password" 
-                placeholder="Password"
-                value={password}
-                onChange={(event) => this.handleUserInput(event)}>
-                <button type="submit" className="LogIn">Log In"</button>
+                <div className="login_box">
+                    <label htmlFor="email">Email address</label>
+                    <input 
+                    type="email" 
+                    name="email" 
+                    className="userName" 
+                    placeholder="@UserName"
+                    value={email}
+                    onChange={(event) => this.handleUserInput(event)}>
+                </div>
+                <div className="login_box">
+                    <label htmlFor="password">Password</label>
+                    <input 
+                    type="password" 
+                    name="password" 
+                    className="password" 
+                    placeholder="Password"
+                    value={password}
+                    onChange={(event) => this.handleUserInput(event)}>
+                </div>
+                <button type=”submit” className="submit">Sign up</button>
                 <Link className="contact" to="Contact">Lost your password</Link>
-            </div>
+        </form>*/}
         );
     }
 }

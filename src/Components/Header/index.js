@@ -13,10 +13,9 @@ class Header extends Component {
   render() {
     return(
       <header className="Header">
-        <div className="logo">Logo</div>
-        <h1 className="title">
-          Translation auction
-        </h1>
+        <div className="logo">
+          <img src={require('./mylogo.gif')} className="logo" alt="logo" />
+        </div>
         <Nav />
         <ProfileButton />
       </header>

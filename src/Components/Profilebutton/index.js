@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './index.scss';
 
+
 class ProfileButton extends Component {
   constructor(props) {
     super(props)
@@ -10,7 +11,8 @@ class ProfileButton extends Component {
   render() {
     return(
       <div>
-        Hello world from ProfileButton
+        Profile
+        <img src={require('./login.png')} className="profile_img" alt="ProfileButton" />
       </div>
     )
   }
