@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 import './index.scss';
 
 
@@ -11,18 +11,16 @@ class Nav extends Component {
 
   render() {
     return(
-      <Router>
-        <div className="nav_bar">
-            <Link className="news" to="News">News</Link>
-            <Link className="jobs" to="Jobs">Jobs</Link>
-            <Link className="contact" to="Contact">Contact</Link>
-        </div>
-      </Router>
+        <React.Fragment>
+          {this.props.shouldDisplayNav && <div className="nav_bar">
+            <Link className="news" to="/news"><span>News</span></Link>
+            <Link className="jobs" to="/jobs"><span>Jobs</span></Link>
+            <Link className="contact" to="/contact"><span>Contact</span></Link>
+          </div>}
+        </React.Fragment>
     )
   }
 }
-
-Nav.displayName = Nav
 
 export default Nav
 

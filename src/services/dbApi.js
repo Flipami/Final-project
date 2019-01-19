@@ -20,10 +20,34 @@ export default class DatabaseApi {
           timestampsInSnapshots: true
       });
     }
+    
+    static async getDocumentById(collectionName, id){
+      let resultDoc = null;
+      
+      try {
+        const doc = await db.collection(collectionName).doc(id).get();
+        if (doc.exists) {
+          resultDoc = {
+            id: doc.id,
+            ...doc.data()
+          }
+        }
+      } catch (error) {
+        console.log("​DatabaseApi -> getDocumentById -> error", error)
+      }
+  
+      return resultDoc;
+    }
 
+    static async createDocumentWithId(collectionName, document, id){
+        return await DatabaseApi.updateDocument(collectionName, document, id);
+      }
+    
     static async updateDocument(collectionName, document, id){
         let success = true;
         
+        //TODO: ojo con guardar el id del documento
+    
         try {
           await db.collection(collectionName).doc(id).set(document, { merge: true });
         } catch (error) {

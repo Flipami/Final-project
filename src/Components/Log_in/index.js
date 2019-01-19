@@ -10,6 +10,8 @@ class LogIn extends Component {
         }
     }
 
+    
+
     handleUserInput (e) {
         const name = e.target.name;
         const value = e.target.value;
@@ -20,30 +22,34 @@ class LogIn extends Component {
         const { email, password } = this.state;
 
         return (
-            <form className="login_form">
-                <img src={require('./login.png')} className="login_pic"/>
-                <h1>Login here</h1>
-                <div className="login_box">
-                    <label htmlFor="email">Email address</label>
-                    <input 
-                    type="email" 
-                    className="userName" 
-                    placeholder="@UserName"
-                    value={email}
-                    onChange={(event) => this.handleUserInput(event)}/>
-                </div>
-                <div className="login_box">
-                    <label /*htmlFor="password"*/>Password</label>
-                    <input 
-                    type="password" 
-                    className="password" 
-                    placeholder="Password"
-                    value={password}
-                    onChange={(event) => this.handleUserInput(event)}/>
-                </div>
-                <button type="submit" className="submit">Sign up</button>
-                <Link className="contact" to="Contact">Lost your password</Link>
-        </form>
+            <div>
+                <Link to="/contact"><span>Lost your password</span></Link>
+                <form className="login_form" onSubmit={(event) => this.props.submit(event, this.state)}>
+                        <img src={require('./login.png')} className="login_pic"/>
+                        <h1>Login here</h1>
+                        <div className="login_box">
+                            <label htmlFor="email">Email address</label>
+                            <input 
+                            name="loginEmail"
+                            type="email" 
+                            className="userName" 
+                            placeholder="@UserName"
+                            value={email}
+                            onChange={(event) => this.handleUserInput(event)}/>
+                        </div>
+                        <div className="login_box">
+                            <label /*htmlFor="password"*/>Password</label>
+                            <input 
+                            name="loginPassword"
+                            type="password" 
+                            className="password" 
+                            placeholder="Password"
+                            value={password}
+                            onChange={(event) => this.handleUserInput(event)}/>
+                        </div>
+                        <button type="submit" className="submit">Log in</button>
+                </form>
+            </div>
         );
     }
 }

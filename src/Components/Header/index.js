@@ -11,12 +11,13 @@ class Header extends Component {
   }
 
   render() {
+    
     return(
       <header className="Header">
         <div className="logo">
           <img src={require('./mylogo.gif')} className="logo" alt="logo" />
         </div>
-        <Nav />
+        <Nav shouldDisplayNav={this.props.displayNav} />
         <ProfileButton />
       </header>
     )

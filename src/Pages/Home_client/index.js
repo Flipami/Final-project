@@ -5,7 +5,7 @@ class index extends Component {
     render() {
         return (
             <div>
-                
+                Admin Home page
             </div>
         );
     }

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './index.scss';
 
-class index extends Component {
+class HomeUser extends Component {
     render() {
         return (
             <div>
-                
+                Users Home page
             </div>
         );
     }
 }
 
-export default index;
+export default HomeUser;

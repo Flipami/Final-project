@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import './index.scss';
 
-class index extends Component {
+class News extends Component {
     render() {
         return (
             <div>
-                Search for Admin page
+                News page
             </div>
         );
     }
 }
 
-export default index;
+export default News;
