@@ -1,51 +1,58 @@
 import React, { Component } from 'react';
-import DatabaseApi from '../services/dbApi';
+import DatabaseApi from '../../services/dbApi';
 
 class ProfileForm extends Component {
     constructor(props){
         super(props);
 
         this.state = {
-            title: '',
-            desc: ''
+            name: '',
+            surname: '',
+            email:' ',
+            phone:' ',
+            address:' ',
+            country:' ',
+            motherlang:' ',
+            combinations:[ ],
+            jobs:[ ],
         }
     }
 
   async componentDidMount(){
     const content = await DatabaseApi.getDocument('content', 'page', 'signup');
-    const {title, desc} = content;
-    this.setState({title, desc});
+    const {name, surname, email, phone, address, country, motherlang, combinations, jobs } = content;
+    this.setState({name, surname, email, phone, address, country, motherlang, combinations, jobs});
   }
 
   render() {
-    const {title, desc} = this.state;
+    const {name, surname, email, phone, address, country, motherlang, combinations, jobs } = this.state;
 
     return (
-      <div className="Profile">
+      <div className="profile">
         <form>
             <label htmlFor="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Name"/>
+            <input type="text" value={name} id="name" name="name" placeholder="Name"/>
 
             <label htmlFor="surname">Surname</label>
-            <input type="text" id="surname" name="surname" placeholder="Surname"/>
+            <input type="text" value={surname} id="surname" name="surname" placeholder="Surname"/>
 
             <label htmlFor="email">Email address</label>
-            <input type="mail" id="mail" name="mail" placeholder="Mail"/>
+            <input type="mail" value={email} id="mail" name="mail" placeholder="Mail"/>
             
             <label htmlFor="phone">Contact phone</label>
-            <input type="text" id="phone" name="phone" placeholder="Phone"/>
+            <input type="text" value={phone} id="phone" name="phone" placeholder="Phone"/>
 
             <label htmlFor="paddress">Primary address</label>
-            <textarea type="text" id="address" name="address" placeholder="Address"/>
+            <textarea type="text" value={address} id="address" name="address" placeholder="Address"/>
 
             <label htmlFor="country">Country</label>
-            <input type="text" id="country" name="country" placeholder="country"/>
+            <input type="text" value={country} id="country" name="country" placeholder="country"/>
 
             <label htmlFor="mlanguage">Mother Languale</label>
-            <input type="text" id="language" name="language" placeholder="language"/>
+            <input type="text" value={motherlang} id="language" name="language" placeholder="language"/>
 
             <label htmlFor="combinationL">Language combinations</label>
-            <select multiple id="combinationL" name="combinationL">
+            <select multiple value={combinations} id="combinationL" name="combinationL">
               <option value="EN>FR">EN>FR</option>
               <option value="EN>DE">EN>DE</option>
               <option value="EN>SE">EN>SE</option>
@@ -58,7 +65,7 @@ class ProfileForm extends Component {
             <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
 
             <label htmlFor="jobs">Types of jobs</label>
-            <select multiple id="jobs" name="jobs">
+            <select multiple value={jobs} id="jobs" name="jobs">
               <option value="technical">Technical jobs</option>
               <option value="marketing">Marketing jobs</option>
               <option value="medical">Medical jobs</option>
@@ -68,14 +75,12 @@ class ProfileForm extends Component {
             </select>
             <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
 
-            <label htmlFor="subject">Subject</label>
-            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+            <label htmlFor="comments">Comments</label>
+            <textarea id="comments" name="comments" placeholder="Write your comments here..."></textarea>
 
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" />
 
             </form>
-        {/*<h1>{title}</h1>
-        <p>{desc}</p>*/}
       </div>
     )
   } 

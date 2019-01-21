@@ -9,7 +9,7 @@ class Contactform extends Component {
 
   render() {
     return(
-      <div className="Contact">
+      <div className="contact">
          <form>
             <label htmlFor="name">Name</label>
             <input type="text" id="name" name="name" placeholder="Name"/>
@@ -47,7 +47,7 @@ class Contactform extends Component {
             <label htmlFor="subject">Subject</label>
             <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
 
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" />
 
             </form>
         Hello world from Contactform
@@ -62,5 +62,5 @@ Contactform.propTypes = {}
 
 Contactform.contextTypes = {}
 
-export default Contactform
+export default Contactform;
 

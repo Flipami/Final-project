@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import './index.scss';
+import Profile from '../../Pages/Profile';
+
 
 
 class ProfileButton extends Component {
@@ -10,15 +13,14 @@ class ProfileButton extends Component {
 
   render() {
     return(
-      <div>
-        Profile
+      <div className="profile">
+        <Link to="/" component={Profile}>
         <img src={require('./login.png')} className="profile_img" alt="ProfileButton" />
+        </Link>
       </div>
     )
   }
 }
-
-ProfileButton.displayName = ProfileButton
 
 export default ProfileButton
 

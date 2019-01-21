@@ -9,6 +9,7 @@ import HomeUser from '../../Pages/Home_users';
 import HomeClient from '../../Pages/Home_client';
 import News from '../../Pages/News';
 import Jobs from '../../Pages/Jobs';
+import Profile from '../../Pages/Profile';
 import Search_client from '../../Pages/Search_client';
 import {setUserInfo} from '../../redux/actions/userActions';
 import { connect } from 'react-redux';
@@ -30,46 +31,39 @@ class App extends Component {
       if (user) {
         userData = await DatabaseApi.getDocumentById('users', user.uid);
         if(!userData){ 
-          console.log("CUIDAOO!! algo raro ha pasado con el usuario");
+          console.log("CUIDADO!! algo raro ha pasado con el usuario!!");
         }
       } 
       this.props.setUser(userData);
       this.setState({user:userData, loading: false});
     });
   }
-  
-  logout = () => {
-    const error = AuthApi.logout();
-
-    if(!error){
-      console.log("Has salido mu bien");
-    }
-  }
 
   render() {
 
     const { user, loading } = this.state;
-    console.log('user', user)
+    console.log('user -->', user)
 
     if(loading) return <div>Loading</div>;
 
     return (
-      <div className="App">
       <Router>
-        <div>
+      <div className="App">
           <Header displayNav={user!== null} />
             <Switch>
-              <Route exact path='/main' component={Main}/>
+              <Route exact path='/' component={Main}/>
               {user && user.profile==='user' && <Route exact path="/home" component={HomeUser}/>}
-              {user && user.profile==='admin' && <Route exact path="/home" component={HomeClient}/>}
               {user && user.profile==='user' && <Route exact path="/news" component={News}/>}
               {user && user.profile==='user' && <Route exact path="/jobs" component={Jobs}/>}
+              {user && user.profile==='user' && <Route exact path="/profile" component={Profile}/>}
+              {user && user.profile==='admin' && <Route exact path="/home" component={HomeClient}/>}
+              {user && user.profile==='admin' && <Route exact path="/news" component={News}/>}
+              {user && user.profile==='admin' && <Route exact path="/jobs" component={Jobs}/>}
               {user && user.profile==='admin' && <Route exact path="/search" component={Search_client}/>}
-              {!user && <Redirect from='/' to='/main'/>}
+              <Redirect to='/'/>
             </Switch>
         </div>
       </Router>
-      </div>
     );
   }
 }
