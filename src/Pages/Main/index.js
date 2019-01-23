@@ -30,7 +30,7 @@ class Main extends Component {
         if(result === 'auth/wrong-password') {
           this.setState({loginError: 'Usuario y/o contraseña no válidos'})
         } else {
-            this.props.history.push('/home');
+            this.props.history.push('/');
             console.log('Main --> redirect')
         }
       }

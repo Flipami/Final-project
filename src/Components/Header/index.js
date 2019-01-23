@@ -22,7 +22,7 @@ class Header extends Component {
   }
 
   render() {
-    const { user } = this.state
+    //const { user } = this.state
 
     return(
       <header className="header">
@@ -30,7 +30,7 @@ class Header extends Component {
           <img src={require('./mylogo.gif')} className="logo" alt="logo" />
         </div>
         <Nav shouldDisplayNav={this.props.displayNav} />
-        {user && <a href="/" onClick={this.logout}>Log me out</a>}
+        {/*user && <a href="/" onClick={this.logout}>Log me out</a>*/}
       </header>
     )
   }

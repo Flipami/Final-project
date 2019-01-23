@@ -28,31 +28,18 @@ class ProfileForm extends Component {
     const {name, surname, email, phone, address, country, motherlang, combinations, jobs } = this.state;
 
     return (
-      <div className="profile">
+      <div className="profile_form">
         <form>
-            <label htmlFor="name">Name</label>
-            <input type="text" value={name} id="name" name="name" placeholder="Name"/>
-
-            <label htmlFor="surname">Surname</label>
-            <input type="text" value={surname} id="surname" name="surname" placeholder="Surname"/>
-
-            <label htmlFor="email">Email address</label>
-            <input type="mail" value={email} id="mail" name="mail" placeholder="Mail"/>
-            
-            <label htmlFor="phone">Contact phone</label>
-            <input type="text" value={phone} id="phone" name="phone" placeholder="Phone"/>
-
-            <label htmlFor="paddress">Primary address</label>
-            <textarea type="text" value={address} id="address" name="address" placeholder="Address"/>
-
-            <label htmlFor="country">Country</label>
-            <input type="text" value={country} id="country" name="country" placeholder="country"/>
-
-            <label htmlFor="mlanguage">Mother Languale</label>
-            <input type="text" value={motherlang} id="language" name="language" placeholder="language"/>
+            <input type="text" value={name} id="name" name="your_name" placeholder="Name" required/>
+            <input type="text" value={surname} id="surname" name="surname" placeholder="Surname" required/>
+            <input type="mail" value={email} id="mail" name="email" placeholder="Email address" required/>
+            <input type="text" value={phone} id="phone" name="phone" placeholder="Contact phone" required/>
+            <textarea type="text" value={address} id="address" name="address" placeholder="Address" required/>
+            <input type="text" value={country} id="country" name="country" placeholder="Country" required/>
+            <input type="text" value={motherlang} id="language" name="language" placeholder="Mother language" required/>
 
             <label htmlFor="combinationL">Language combinations</label>
-            <select multiple value={combinations} id="combinationL" name="combinationL">
+            <select multiple value={combinations} id="combinationL" name="combinationL" required>
               <option value="EN>FR">EN>FR</option>
               <option value="EN>DE">EN>DE</option>
               <option value="EN>SE">EN>SE</option>
@@ -65,7 +52,7 @@ class ProfileForm extends Component {
             <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
 
             <label htmlFor="jobs">Types of jobs</label>
-            <select multiple value={jobs} id="jobs" name="jobs">
+            <select multiple value={jobs} id="jobs" name="jobs" required>
               <option value="technical">Technical jobs</option>
               <option value="marketing">Marketing jobs</option>
               <option value="medical">Medical jobs</option>
@@ -75,10 +62,9 @@ class ProfileForm extends Component {
             </select>
             <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
 
-            <label htmlFor="comments">Comments</label>
             <textarea id="comments" name="comments" placeholder="Write your comments here..."></textarea>
 
-            <input type="submit" value="Submit" />
+            <button type="submit" value="Submit">Submit</button>
 
             </form>
       </div>

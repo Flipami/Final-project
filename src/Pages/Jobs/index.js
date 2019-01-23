@@ -4,7 +4,7 @@ class Jobs extends Component {
     render() {
         return (
             <div>
-                Jobs page
+                <h1>Jobs page</h1>
             </div>
         );
     }

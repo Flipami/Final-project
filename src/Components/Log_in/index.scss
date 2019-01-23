@@ -36,7 +36,7 @@ div{
     border-bottom: 1px solid  #071A52;
     background: transparent;
     //outline: none;
-    font-size: 20px;
+    font-size: 30px;
 }
 .submit_login{
     border: none;
@@ -54,6 +54,9 @@ div{
 }
 
 .login_form a {
+    font-size: bold;
+    padding: 20px;
+    margin: 25px;
+    color: #071A52;
     text-decoration: none;
-    font-size: 25px;
 }

@@ -6,19 +6,15 @@
   justify-content: space-evenly;
   align-content: flex-end;
 }
-
-.news, .jobs, .contact {
+.news, .jobs, .contact, .profile, a {
   font-size: bold;
   padding: 20px;
   margin: 25px;
   text-decoration: none;
 }
-.profile {
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
+a {
 }
-.news:hover, .jobs:hover, .contact:hover, .profile:hover {
+.news:hover, .jobs:hover, .contact:hover, .profile:hover, a:hover{
   background: #A7FF83;
   font-size: 25px;
 }
