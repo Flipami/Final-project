@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import AuthApi from '../../services/authApi';
-import DatabaseApi from '../../services/dbApi'
+import DatabaseApi from '../../services/dbApi';
 import './index.scss';
-import Header from '../Header'
+import Header from '../Header';
 import Main from '../../Pages/Main';
 //import PrivateRoute from '../PrivateRoutes';
 import HomeUser from '../../Pages/Home_users';
 import HomeClient from '../../Pages/Home_client';
 import News from '../../Pages/News';
 import Jobs from '../../Pages/Jobs';
-import Contact from '../../Pages/Contact'
+import Contact from '../../Pages/Contact';
 import Profile from '../../Pages/Profile';
 import Search_client from '../../Pages/Search_client';
 import {setUserInfo} from '../../redux/actions/userActions';
@@ -64,7 +64,7 @@ class App extends Component {
               {user && user.profile==='admin' && <Route exact path="/news" component={News}/>}
               {user && user.profile==='admin' && <Route exact path="/jobs" component={Jobs}/>}
               {user && user.profile==='admin' && <Route exact path="/search" component={Search_client}/>}
-              <Redirect to='/'/>
+              <Redirect from="/" to='/home'/>
             </Switch>
         </div>
       </Router>
