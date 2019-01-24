@@ -3,22 +3,17 @@ import './index.scss';
 import DatabaseApi from '../../../services/dbApi';
 
 class NewItem extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            language_comb: '',
-            wc: '',
-            type: '',
-            delivery: '',
-            file_type: ''
-        }
-    }
-    
+
     render() {
-        const { language_comb, wc, type, delivery, file_type } = this.state
+        const {newJobInfo} = this.props
         return (
-            <div>
-                Aqui mostraremos cada una de las noticias
+            <div className="newsItem">
+                <Link to={`/news/${id}`}>
+                <div><strong>{newJobInfo.language_comb}</strong></div>
+                </Link>
+                <p>A new <strong>{newJobInfo.type}</strong> job to be delivered <strong>{newJobInfo.delivery}</strong>, with a word count of <strong>{newJobInfo.wc}</strong> words that is in <strong>{newJobInfo.file_type}</strong> format.</p>
+
+    
             </div>
         );
     }

@@ -2,7 +2,23 @@ import React, { Component } from 'react';
 import ProfileForm from '../../Components/ProfileForm';
 
 class Profile extends Component {
-    render() {
+    constructor(props){
+        super(props);
+
+        this.state={
+            name: '',
+            surname: '',
+            email:' ',
+            phone:' ',
+            address:' ',
+            country:' ',
+            motherlang:' ',
+            combinations:[ ],
+            jobs:[ ],
+        }
+    }
+
+    render(){
         return (
             <div>
                 <h1>Profile form</h1>
@@ -14,4 +30,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+export default (Profile);

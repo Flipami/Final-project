@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './index.scss';
 
-class index extends Component {
+class Search extends Component {
     render() {
         return (
             <div>
@@ -11,4 +11,4 @@ class index extends Component {
     }
 }
 
-export default index;
+export default Search;

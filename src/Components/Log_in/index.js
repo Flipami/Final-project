@@ -10,7 +10,7 @@ class LogIn extends Component {
             loginPassword: ' ',
         }
     }
-
+    
     handleUserInput (e) {
         e.preventDefault();
         const name = e.target.name;
@@ -26,7 +26,7 @@ class LogIn extends Component {
 
         return (
             <div>
-                <form className="login_form" onSubmit={(event) => this.props.submit(event, this.state)}>
+                <form className="login_form" onSubmit={(event) => this.props.submitEvent(event, this.state)}>
                         <img src={require('./login.png')} className="login_pic" alt="login"/> 
                         <h1>Login here</h1>
                         <input 

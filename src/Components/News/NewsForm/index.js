@@ -35,11 +35,12 @@ class NewsForm extends Component {
                     <input type="text" value={delivery} onChange={(e) => this.setState({delivery:e.target.value})} placeholder="Delivery date"/>
                     <input type="text" value={file_type} onChange={(e) => this.setState({file_type:e.target.value})} placeholder="File format"/>
 
-                    <button className="submit_new" type="submit" value="Submit" >Submit</button>
+                    <button className="submit_new" type="submit" value="Submit" onclick={this.resetInput}>Submit</button>
                 </form>
             </div>
         );
     }
 }
+
 
 export default NewsForm;

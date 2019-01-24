@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import AuthApi from '../../services/authApi';
-import DatabaseApi from '../../services/dbApi';
+import DatabaseApi from '../../services/dbApi'
 import './index.scss';
-import Header from '../Header';
+import Header from '../Header'
 import Main from '../../Pages/Main';
-//import PrivateRoute from '../PrivateRoutes';
+import PrivateRoute from '../PrivateRoutes';
 import HomeUser from '../../Pages/Home_users';
-import HomeClient from '../../Pages/Home_client';
+import HomeAdmin from '../../Pages/Home_client';
 import News from '../../Pages/News';
 import Jobs from '../../Pages/Jobs';
-import Contact from '../../Pages/Contact';
 import Profile from '../../Pages/Profile';
-import Search_client from '../../Pages/Search_client';
+import Search from '../../Pages/Search_client';
+import Notifications from '../../Pages/Notifications';
 import {setUserInfo} from '../../redux/actions/userActions';
 import { connect } from 'react-redux';
+
 
 class App extends Component {
   constructor(props){
@@ -38,7 +39,6 @@ class App extends Component {
       } 
       this.props.setUser(userData);
       this.setState({user:userData, loading: false});
-      
     });
   }
 
@@ -55,16 +55,14 @@ class App extends Component {
           <Header displayNav={user!== null} />
             <Switch>
               <Route exact path='/' component={Main}/>
-              {user && user.profile==='user' && <Route exact path="/home" component={HomeUser}/>}
-              {user && user.profile==='user' && <Route exact path="/news" component={News}/>}
-              {user && user.profile==='user' && <Route exact path="/jobs" component={Jobs}/>}
-              {user && user.profile==='user' && <Route exact path="/contact" component={Contact}/>}
-              {user && user.profile==='user' && <Route exact path="/profile" component={Profile}/>}
-              {user && user.profile==='admin' && <Route exact path="/home" component={HomeClient}/>}
-              {user && user.profile==='admin' && <Route exact path="/news" component={News}/>}
-              {user && user.profile==='admin' && <Route exact path="/jobs" component={Jobs}/>}
-              {user && user.profile==='admin' && <Route exact path="/search" component={Search_client}/>}
-              <Redirect from="/" to='/home'/>
+              <PrivateRoute exact path="/home" componentAdmin={HomeAdmin} componentUser={HomeUser}/>}
+              <PrivateRoute exact path="/news" componentAdmin={News} componentUser={News}/>}
+              <PrivateRoute exact path="/profile" componentUser={Profile}/>}
+              <PrivateRoute exact path="/notifications" componentAdmin={Notifications} />}
+              <PrivateRoute exact path="/jobs"   componentAdmin={Jobs} componentUser={Jobs}/>}
+              <PrivateRoute exact path="/search" componentAdmin={Search}/>}
+              {/*<PrivateRoute exact path="/notifications" componentAdmin={Notifications}/>}*/}
+              <Redirect to='/'/>
             </Switch>
         </div>
       </Router>

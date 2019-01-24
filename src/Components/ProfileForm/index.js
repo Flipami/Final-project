@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import DatabaseApi from '../../services/dbApi';
+import { withRouter } from "react-router";
+import { connect } from 'react-redux';
+import {setUserInfo} from '../../redux/actions/userActions'
 
 class ProfileForm extends Component {
     constructor(props){
@@ -19,18 +22,73 @@ class ProfileForm extends Component {
     }
 
   async componentDidMount(){
-    const content = await DatabaseApi.getDocument('content', 'page', 'signup');
+    const { user } = this.props
+    const { uid } = user.uid;
+    const content = await DatabaseApi.getDocumentById('users', uid);
     const {name, surname, email, phone, address, country, motherlang, combinations, jobs } = content;
     this.setState({name, surname, email, phone, address, country, motherlang, combinations, jobs});
+    console.log('ProfileForm ->', content)
   }
+  /* async componentDidMount (){
+        AuthApi.registerAuthObserver((user) => {
+            if(!user) return; 
+      
+            const { uid } = user;
+            const { 
+              registerEmail,
+              registerName,
+              registerLastname,
+            } = this.state;
+      
+            
+            const newUser = {
+                uid,
+                email: registerEmail,
+                name: registerName,
+                lastName: registerLastname,
+            }
+        
+              DatabaseApi.createDocumentWithId('user', newUser, uid)
+            
+          });
+    }
+
+    createAccount = async (e) => {
+        e.preventDefault();
+        this.setState({registerError: ''});
+    
+        const { registerEmail, registerPassword } = this.state;
+    
+        const result = await AuthApi.signUp(registerEmail, registerPassword);
+    
+        if(result === 'auth/weak-password') {
+          this.setState({registerError: 'Contraseña muy débil, ponte las pilas!'})
+    
+        } else if(result === 'auth/email-already-in-use'){
+          this.setState({registerError: 'El usuario ya existe'})
+        }
+            console.log("​Signup -> createAccount -> result", result)
+      }*/
+  //onSubmitForm cogeremos del state todas las variables, crearemos el objeto y lo enviamos a la base de datos con el update
+  async onSubmitForm (e, profileData){
+    e.preventDefault();
+    
+    const { name, surname, email, phone, address, country, motherlang, combinations, jobs} = this.state;
+    DatabaseApi.getCollection('users', {name, surname, email, phone, address, country, motherlang, combinations, jobs});
+        
+  }
+
+  resetInput = () => {
+    this.setState({ value: '' });
+    } 
 
   render() {
     const {name, surname, email, phone, address, country, motherlang, combinations, jobs } = this.state;
 
     return (
       <div className="profile_form">
-        <form>
-            <input type="text" value={name} id="name" name="your_name" placeholder="Name" required/>
+        <form onSubmit={this.onSubmitForm}>
+            <input type="text" value={name} id="name" name="name" placeholder="Name" required/>
             <input type="text" value={surname} id="surname" name="surname" placeholder="Surname" required/>
             <input type="mail" value={email} id="mail" name="email" placeholder="Email address" required/>
             <input type="text" value={phone} id="phone" name="phone" placeholder="Contact phone" required/>
@@ -64,7 +122,7 @@ class ProfileForm extends Component {
 
             <textarea id="comments" name="comments" placeholder="Write your comments here..."></textarea>
 
-            <button type="submit" value="Submit">Submit</button>
+            <button type="submit" value="Submit" onClick={this.resetInput}>Submit</button>
 
             </form>
       </div>
@@ -72,5 +130,10 @@ class ProfileForm extends Component {
   } 
             
 }
+const mapStateToProps = (state) => {
+  return {
+    user: state.userReducer.user
+  }
+}
 
-export default ProfileForm;
+export default withRouter(connect(mapStateToProps)(ProfileForm))

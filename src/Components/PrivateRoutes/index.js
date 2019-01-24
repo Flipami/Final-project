@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import HomeUser from '../../Pages/Home_users'
+//import HomeUser from '../../Pages/Home_users'
 
 
 class PrivateRouteHome extends Component {
@@ -9,12 +9,13 @@ class PrivateRouteHome extends Component {
     const { user, componentAdmin, componentUser } = this.props;
     const ComponentUser = componentUser;
     const ComponentAdmin = componentAdmin;
-
+    console.log('PrivateRouteHome', user)
+    
     return (
       <Route render={(props) => (
         user ? 
           (user.profile === "admin" ? <ComponentAdmin {...this.props} /> : <ComponentUser {...this.props} />): 
-          <Redirect to='/home_user' component={HomeUser} />
+          <div>Necesita estar autenticado para ver esta página</div>
       )} />
     )
   }
