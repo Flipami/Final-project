@@ -10,6 +10,7 @@ import HomeUser from '../../Pages/Home_users';
 import HomeAdmin from '../../Pages/Home_client';
 import News from '../../Pages/News';
 import Jobs from '../../Pages/Jobs';
+import Contact from '../../Pages/Contact';
 import Profile from '../../Pages/Profile';
 import Search from '../../Pages/Search_client';
 import Notifications from '../../Pages/Notifications';
@@ -29,7 +30,6 @@ class App extends Component {
 
   componentDidMount(){
     AuthApi.registerAuthObserver(async (user) => {
-      console.log("​App -> componentDidMount -> user", user)
       let userData = null;
       if (user) {
         userData = await DatabaseApi.getDocumentById('users', user.uid);
@@ -37,6 +37,8 @@ class App extends Component {
           console.log("CUIDADO!! algo raro ha pasado con el usuario!!");
         }
       } 
+      console.log("​App -> componentDidMount -> user", userData)
+
       this.props.setUser(userData);
       this.setState({user:userData, loading: false});
     });
@@ -57,11 +59,11 @@ class App extends Component {
               <Route exact path='/' component={Main}/>
               <PrivateRoute exact path="/home" componentAdmin={HomeAdmin} componentUser={HomeUser}/>}
               <PrivateRoute exact path="/news" componentAdmin={News} componentUser={News}/>}
-              <PrivateRoute exact path="/profile" componentUser={Profile}/>}
-              <PrivateRoute exact path="/notifications" componentAdmin={Notifications} />}
               <PrivateRoute exact path="/jobs"   componentAdmin={Jobs} componentUser={Jobs}/>}
-              <PrivateRoute exact path="/search" componentAdmin={Search}/>}
-              {/*<PrivateRoute exact path="/notifications" componentAdmin={Notifications}/>}*/}
+              <PrivateRoute exact path="/profile" componentUser={Profile}/>}
+              <PrivateRoute exact path="/contact" componentUser={Contact}/>}
+              <PrivateRoute exact path="/notifications" componentAdmin={Notifications} />}
+              <PrivateRoute exact path="/search" componentAdmin={Search}/>
               <Redirect to='/'/>
             </Switch>
         </div>

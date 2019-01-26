@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
-import HomeUser from '../../Pages/Home_users'
+import { Route } from 'react-router-dom';
+import { Redirect } from 'react-router';
+import HomeUser from '../../Pages/Home_users';
 
 
 class PrivateRouteHome extends Component {

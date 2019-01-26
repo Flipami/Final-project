@@ -1,134 +1,172 @@
 import React, { Component } from 'react';
+import './index.scss';
 import DatabaseApi from '../../services/dbApi';
+import MultiSelect from "@kenshooui/react-multi-select";
 import { withRouter } from "react-router";
 import { connect } from 'react-redux';
-import {setUserInfo} from '../../redux/actions/userActions'
+
 
 class ProfileForm extends Component {
     constructor(props){
         super(props);
 
         this.state = {
+            id: '',
             name: '',
             surname: '',
-            email:' ',
-            phone:' ',
-            address:' ',
-            country:' ',
-            motherlang:' ',
-            combinations:[ ],
+            email:'',
+            phone:'',
+            address:'',
+            country:'',
+            motherlang:'',
+            combinationsItems:[ 
+              { id: 0, label: "EN>FR"},
+              { id: 1, label: "EN>DE"},
+              { id: 2, label: "EN>SE"},
+              { id: 3, label: "EN>PT"},
+              { id: 4, label: "EN>IT"},
+              { id: 5, label: "EN>ES"},
+              { id: 6, label: "EN>NO"},
+              { id: 7, label: "EN>DA"}
+            ],
+            combinations: [],
+            jobsItems:[
+              { id: 0, label: "Technical"},
+              { id: 1, label: "Marketing"},
+              { id: 2, label: "Medical"},
+              { id: 3, label: "Legal"},
+              { id: 4, label: "Machine Translations"},
+              { id: 5, label: "Sworn Translations"}
+            ],
             jobs:[ ],
         }
     }
 
   async componentDidMount(){
-    const { user } = this.props
-    const { uid } = user.uid;
-    const content = await DatabaseApi.getDocumentById('users', uid);
-    const {name, surname, email, phone, address, country, motherlang, combinations, jobs } = content;
-    this.setState({name, surname, email, phone, address, country, motherlang, combinations, jobs});
-    console.log('ProfileForm ->', content)
-  }
-  /* async componentDidMount (){
-        AuthApi.registerAuthObserver((user) => {
-            if(!user) return; 
-      
-            const { uid } = user;
-            const { 
-              registerEmail,
-              registerName,
-              registerLastname,
-            } = this.state;
-      
-            
-            const newUser = {
-                uid,
-                email: registerEmail,
-                name: registerName,
-                lastName: registerLastname,
-            }
-        
-              DatabaseApi.createDocumentWithId('user', newUser, uid)
-            
-          });
-    }
+    //sacar la información de redux y conseguir el ID
+    const { id, name, surname, email, /*phone, address, country, motherlang, combinations, jobs */} = this.props.user
+    this.setState({ id, name, surname, email, /*phone, address, country, motherlang, combinations, jobs*/})
+    console.log("componentDidMount --- user",this.props.user);
 
-    createAccount = async (e) => {
-        e.preventDefault();
-        this.setState({registerError: ''});
-    
-        const { registerEmail, registerPassword } = this.state;
-    
-        const result = await AuthApi.signUp(registerEmail, registerPassword);
-    
-        if(result === 'auth/weak-password') {
-          this.setState({registerError: 'Contraseña muy débil, ponte las pilas!'})
-    
-        } else if(result === 'auth/email-already-in-use'){
-          this.setState({registerError: 'El usuario ya existe'})
-        }
-            console.log("​Signup -> createAccount -> result", result)
-      }*/
-  //onSubmitForm cogeremos del state todas las variables, crearemos el objeto y lo enviamos a la base de datos con el update
-  async onSubmitForm (e, profileData){
-    e.preventDefault();
-    
-    const { name, surname, email, phone, address, country, motherlang, combinations, jobs} = this.state;
-    DatabaseApi.getCollection('users', {name, surname, email, phone, address, country, motherlang, combinations, jobs});
-        
   }
+
+  //onSubmitForm cogeremos del state todas las variables, crearemos el objeto y lo enviamos a la base de datos con el update
+  async onSubmitForm (e){
+    e.preventDefault();
+
+    const { id, name, surname, email, /*phone, address, country, motherlang, combinations, jobs */} = this.state;
+    DatabaseApi.updateDocument('users', {name, surname, email, /*phone, address, country, motherlang, combinations, jobs*/}, id)
+    this.setState({name, surname, email, /*phone, address, country, motherlang, combinations, jobs*/});
+  }
+
+  handleUserInput (e) {
+    e.preventDefault();
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({[name]: value});
+  }
+
+  handleMultiChange = (selectedItems, name) => {
+    this.setState({[name]: selectedItems })
+  };
 
   resetInput = () => {
     this.setState({ value: '' });
     } 
 
   render() {
-    const {name, surname, email, phone, address, country, motherlang, combinations, jobs } = this.state;
+    const {name, surname, email, phone, address, country, motherlang, combinationsItems, combinations, jobsItems, jobs } = this.state;
 
     return (
       <div className="profile_form">
         <form onSubmit={this.onSubmitForm}>
-            <input type="text" value={name} id="name" name="name" placeholder="Name" required/>
-            <input type="text" value={surname} id="surname" name="surname" placeholder="Surname" required/>
-            <input type="mail" value={email} id="mail" name="email" placeholder="Email address" required/>
-            <input type="text" value={phone} id="phone" name="phone" placeholder="Contact phone" required/>
-            <textarea type="text" value={address} id="address" name="address" placeholder="Address" required/>
-            <input type="text" value={country} id="country" name="country" placeholder="Country" required/>
-            <input type="text" value={motherlang} id="language" name="language" placeholder="Mother language" required/>
-
+    
+            <input name="name"
+              type="text" 
+              value={name} 
+              placeholder="Name" 
+              onChange={(event) => this.handleUserInput(event)}
+              required/>
+            <input name="surname"
+              type="text" 
+              value={surname} 
+              placeholder="Surname" 
+              onChange={(event) => this.handleUserInput(event)}
+              required/>
+            <input name="email"
+              type="email" 
+              value={email} 
+              placeholder="Email address" 
+              onChange={(event) => this.handleUserInput(event)}
+              required/>
+            <input name="phone"
+              type="text" 
+              value={phone}
+              placeholder="Contact phone"
+              onChange={(event) => this.handleUserInput(event)}
+              /*required*//>
+            <textarea name="address"
+              type="text" 
+              value={address} 
+              placeholder="Address" 
+              onChange={(event) => this.handleUserInput(event)}
+              /*required*//>
+            <input name="country"
+              type="text" 
+              value={country}  
+              placeholder="Country" 
+              onChange={(event) => this.handleUserInput(event)}
+              /*required*//>
+            <input name="motherlang"
+              type="text" 
+              value={motherlang}  
+              placeholder="Mother language" 
+              onChange={(event) => this.handleUserInput(event)}
+              /*required*//>
             <label htmlFor="combinationL">Language combinations</label>
-            <select multiple value={combinations} id="combinationL" name="combinationL" required>
-              <option value="EN>FR">EN>FR</option>
-              <option value="EN>DE">EN>DE</option>
-              <option value="EN>SE">EN>SE</option>
-              <option value="EN>PT">EN>PT</option>
-              <option value="EN>IT">EN>IT</option>
-              <option value="EN>ES">EN>ES</option>
-              <option value="EN>NO">EN>NO</option>
-              <option value="EN>DA">EN>DA</option>
-            </select>
-            <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
+            <MultiSelect name="combinations"
+              items={combinationsItems}
+              selectedItems={combinations}
+              onChange={(combinations) =>{this.handleMultiChange(combinations, 'combinations')}}
+              />
+              {/*{this.props.combinations.map((item, index) => (
+                <option key={index} value={item}>{item.name}</option>
+                <option key={'EN>FR'} value="EN>FR">EN>FR</option>
+                <option key={'EN>DE'} value="EN>DE">EN>DE</option>
+                <option key={'EN>SE'} value="EN>SE">EN>SE</option>
+                <option key={'EN>PT'} value="EN>PT">EN>PT</option>
+                <option key={'EN>IT'} value="EN>IT">EN>IT</option>
+                <option key={'EN>ES'} value="EN>ES">EN>ES</option>
+                <option key={'EN>NO'} value="EN>NO">EN>NO</option>
+                <option key={'EN>DA'} value="EN>DA">EN>DA</option>
+                )
+              )}
+           <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>*/}
 
             <label htmlFor="jobs">Types of jobs</label>
-            <select multiple value={jobs} id="jobs" name="jobs" required>
-              <option value="technical">Technical jobs</option>
-              <option value="marketing">Marketing jobs</option>
-              <option value="medical">Medical jobs</option>
-              <option value="legal">Legal jobs</option>
-              <option value="mt">Machine Translation</option>
-              <option value="swan">Sworn Translation</option>
-            </select>
-            <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>
+            <MultiSelect name="jobs"
+              items={jobsItems}
+              selectedItems={jobs}
+              onChange={(jobs) =>{this.handleMultiChange(jobs, 'jobs')}}
+              />
+                {/*<option value="technical">Technical jobs</option>
+                <option value="marketing">Marketing jobs</option>
+                <option value="medical">Medical jobs</option>
+                <option value="legal">Legal jobs</option>
+                <option value="mt">Machine Translation</option>
+                <option value="sworn">Sworn Translation</option>
+            <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>*/}
 
-            <textarea id="comments" name="comments" placeholder="Write your comments here..."></textarea>
+            <textarea name="comments" 
+            placeholder="Write your comments here..."></textarea>
 
-            <button type="submit" value="Submit" onClick={this.resetInput}>Submit</button>
-
-            </form>
+            <button type="submit_profile" 
+            value="Submit"
+            onClick={this.resetInput}>Submit</button>
+          </form>
       </div>
     )
-  } 
-            
+  }            
 }
 const mapStateToProps = (state) => {
   return {

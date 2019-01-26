@@ -16,9 +16,9 @@ export default class DatabaseApi {
 
       db = firebase.firestore();
 
-      db.settings({
+      /*db.settings({
           timestampsInSnapshots: true
-      });
+      });*/
     }
     
     static async getDocumentById(collectionName, id){

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ContactForm from '../../Components/ContactForm';
-import DatabaseApi from '../../services/dbApi';
+
 
 class Contact extends Component {
     

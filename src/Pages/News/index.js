@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import dbService from '../../services/dbApi';
+import NewsItem from '../../Components/News/NewsItem';
 import NewsForm from '../../Components/News/NewsForm';
 import { connect } from 'react-redux';
 
@@ -7,7 +9,7 @@ class News extends Component {
         super(props)
 
         this.state = {
-            news: []
+            jobs: []
 
         }
     }
@@ -17,28 +19,28 @@ class News extends Component {
     }
     loadData = async () => {
         try{
-            const news = await dbService.getContent('news')
-            this.setState({news})
+            const jobs = await dbService.getContent('newjobs')
+            this.setState({jobs})
         }catch(error){
             console.error(error);
         }
     }
 
     render() {
-        const { news } = this.state;
+        const { jobs } = this.state;
         const { user } = this.props
-        console.log('render', news)
+        console.log('render', jobs)
         return (
             <div className="news">
                 <h1>Outcome News</h1>
-                {news.map((document) => {
+                {jobs.map((document) => {
                     return <NewsItem key={document.id} newJobInfo={document}/>
                     && user.profile==='admin' && <div><NewsForm /></div>
                 })}
             </div>
         );
+    }
 }
-
                 
 
 const mapStateToProps = (state) => {
