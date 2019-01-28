@@ -2,7 +2,9 @@
 .profile_form {
     display:flex;
     flex-direction: row;
-    align-content: center;
+    justify-content: center;
+    align-content: space-between;
+    align-items: center;
     border:none;
     margin: 5px;
     padding: 5px;

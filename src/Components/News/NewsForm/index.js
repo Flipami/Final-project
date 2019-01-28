@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './index.scss';
 import DatabaseApi from '../../../services/dbApi';
+import {setJobInfo} from '../../../redux/actions/jobActions';
+import { connect } from 'react-redux';
 
 class NewsForm extends Component {
     constructor(props) {
@@ -10,7 +12,9 @@ class NewsForm extends Component {
           wc: '',
           type: '',
           delivery: '',
-          file_type: ''
+          file_type: '',
+          job: null,
+          loading: true,
         }
       }
 
@@ -18,10 +22,16 @@ class NewsForm extends Component {
         e.preventDefault();
         const { language_comb, wc, type, delivery, file_type } = this.state;
     
-        DatabaseApi.addDocument('newjobs', {language_comb, wc, type, delivery, file_type });
-      }
+        const success = DatabaseApi.addDocument('newjobs', {language_comb, wc, type, delivery, file_type });
+        success && this.resetInput()
+        success && alert('The info had been save correctly');
+    }
     resetInput = () => {
-    this.setState({ value: '' });
+    this.setState({ language_comb: '',
+    wc: '',
+    type: '',
+    delivery: '',
+    file_type: '' });
     }
 
     render() {
@@ -35,12 +45,15 @@ class NewsForm extends Component {
                     <input type="text" value={delivery} onChange={(e) => this.setState({delivery:e.target.value})} placeholder="Delivery date"/>
                     <input type="text" value={file_type} onChange={(e) => this.setState({file_type:e.target.value})} placeholder="File format"/>
 
-                    <button className="submit_new" type="submit" value="Submit" onclick={this.resetInput}>Submit</button>
+                    <button className="submit_new" type="submit" value="Submit">Submit</button>
                 </form>
             </div>
         );
     }
 }
 
+const mapDispatchToProps =(dispatch) => {
+    return { setJob: (jobInfo) => { dispatch(setJobInfo(jobInfo))}}
+  }
 
-export default NewsForm;
+export default connect(mapDispatchToProps)(NewsForm);

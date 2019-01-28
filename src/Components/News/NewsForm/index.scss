@@ -8,7 +8,7 @@
     padding: 5px;
     background: transparent;
     font-size: 20px;
-  }
+
   input{
     font-family: 'Handlee';
     font-size: 25px;
@@ -36,3 +36,24 @@
     cursor: pointer;
     background:#17B978;
   }
+}
+.alert {
+  font-family: 'Handlee';
+  padding: 20px;
+  background-color: #17B978;
+  color:  #071A52;
+}
+.closebtn {
+  margin-left: 15px;
+  color:  #071A52;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}

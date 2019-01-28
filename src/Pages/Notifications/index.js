@@ -5,6 +5,7 @@ class Notifications extends Component {
         return (
             <div>
                 Se verán las notificaciones de todo lo que haya pasado en esta página!!
+                
             </div>
         );
     }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import dbService from '../../services/dbApi';
+import DatabaseApi from '../../services/dbApi';
 import NewsItem from '../../Components/News/NewsItem';
 import NewsForm from '../../Components/News/NewsForm';
+import {setJobInfo} from '../../redux/actions/jobActions';
 import { connect } from 'react-redux';
 
 class News extends Component {
@@ -9,44 +10,74 @@ class News extends Component {
         super(props)
 
         this.state = {
-            jobs: []
-
+            job: []
         }
     }
 
-    componentDidMount () {
-        this.loadData();
+    async componentDidMount () {
+        const responseData = await this.loadData();
+        console.log('test', responseData, this.props.user)
+        const filterData = this.filterData(responseData)
+        this.props.setJob(responseData);
+        this.setState({job: filterData, loading: false});
     }
+
     loadData = async () => {
+        let jobData = null;
         try{
-            const jobs = await dbService.getContent('newjobs')
-            this.setState({jobs})
-        }catch(error){
+             jobData = await DatabaseApi.getCollection('newjobs')
+            console.log('jobData in News -->', jobData)
+        } catch(error) {
             console.error(error);
         }
+        return jobData;
+    }
+
+    filterData = (responseData) => {
+        const userCombinations = this.props.user.combinations
+        let allowedCombinations=[]
+        for (let i = 0; i < userCombinations.length; i++) {
+           allowedCombinations.push(userCombinations[i].label);
+        }
+        const displayCombinations = responseData.filter((offer) => allowedCombinations.includes(offer.language_comb))
+        return displayCombinations 
+    }
+
+    makeBook = (job) => { 
+        debugger
+        const allJobs = this.state.job
+        const updatedAllJobs = allJobs.map((offer) => { 
+            if(offer.id === job.id) {
+             offer.reserved = !offer.reserved
+             console.log( 'offer', offer)
+             return offer
+            }
+        })
+        this.setState({jobData: updatedAllJobs})
     }
 
     render() {
-        const { jobs } = this.state;
+        const { job } = this.state
         const { user } = this.props
-        console.log('render', jobs)
+        console.log('News -->', user)
+        console.log('News -->', job)
         return (
-            <div className="news">
-                <h1>Outcome News</h1>
-                {jobs.map((document) => {
-                    return <NewsItem key={document.id} newJobInfo={document}/>
-                    && user.profile==='admin' && <div><NewsForm /></div>
-                })}
-            </div>
-        );
-    }
-}
-                
+            <div className="newsList">
+            {job && job.map(job => <NewsItem key={job.id} newJobInfo={job}  reserved={job.reserved} booked={this.makeBook} user={user} /> )}
 
-const mapStateToProps = (state) => {
-    return {
-      user: state.userReducer.user
+            {user.profile==='admin' && <NewsForm />}
+            </div>
+            )
     }
+}           
+
+const mapDispatchToProps =(dispatch) => {
+    return { setJob: (jobInfo) => { dispatch(setJobInfo(jobInfo))}}
   }
 
-export default connect(mapStateToProps)(News);
+export default connect(null, mapDispatchToProps)(News);
+
+/*  crear el sign up --> función de Cristiam
+coger el id y crear el usuario, 
+añadir a favoritos --> campo de reservado a true en la coleccion, bloquear click en CSS
+                --> array de trabajos asignados*/

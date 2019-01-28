@@ -50,9 +50,10 @@ export default class DatabaseApi {
     
         try {
           await db.collection(collectionName).doc(id).set(document, { merge: true });
+          console.log("​DatabaseApi -> addDocument -> document", document)
         } catch (error) {
           success = false;
-                console.log("​DatabaseApi -> updateDocument -> error", error)
+          console.log("​DatabaseApi -> updateDocument -> error", error)
         }
     
         return success;
@@ -64,7 +65,7 @@ export default class DatabaseApi {
         try {
           const docRef = await db.collection(collectionName).add(document);
           if(docRef.id) {
-                    console.log("​DatabaseApi -> addDocument -> docRef.id", docRef.id)
+            //console.log("​DatabaseApi -> addDocument -> docRef.id", docRef.id)
             success = true;
           }
           
@@ -110,6 +111,7 @@ export default class DatabaseApi {
             const databaseObject = doc.data();
             databaseObject.id = doc.id;
             result.push(databaseObject);
+            console.log('databaseObject --->', databaseObject)
           });
     
         } catch (error) {

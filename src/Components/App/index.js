@@ -37,7 +37,6 @@ class App extends Component {
           console.log("CUIDADO!! algo raro ha pasado con el usuario!!");
         }
       } 
-      console.log("​App -> componentDidMount -> user", userData)
 
       this.props.setUser(userData);
       this.setState({user:userData, loading: false});
@@ -74,6 +73,5 @@ class App extends Component {
 const mapDispatchToProps =(dispatch) => {
   return { setUser: (userInfo) => { dispatch(setUserInfo(userInfo))}}
 }
-
 
 export default connect(null, mapDispatchToProps)(App);

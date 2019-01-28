@@ -39,24 +39,37 @@ class ProfileForm extends Component {
               { id: 5, label: "Sworn Translations"}
             ],
             jobs:[ ],
+            comments:'',
         }
     }
 
   async componentDidMount(){
     //sacar la información de redux y conseguir el ID
-    const { id, name, surname, email, /*phone, address, country, motherlang, combinations, jobs */} = this.props.user
-    this.setState({ id, name, surname, email, /*phone, address, country, motherlang, combinations, jobs*/})
+    const { id, name, surname, email, phone, address, country, motherlang, combinations, jobs, comments } = this.props.user
+    this.setState({ id, 
+      name: name || '', 
+      surname: surname || '', 
+      email: email || '', 
+      phone: phone || '', 
+      address: address || '', 
+      country: country || '', 
+      motherlang: motherlang || '', 
+      combinations: combinations || [], 
+      jobs: jobs || [],
+      comments: comments || '' })
     console.log("componentDidMount --- user",this.props.user);
 
   }
 
   //onSubmitForm cogeremos del state todas las variables, crearemos el objeto y lo enviamos a la base de datos con el update
-  async onSubmitForm (e){
+  onSubmitForm = async (e) => {
     e.preventDefault();
 
-    const { id, name, surname, email, /*phone, address, country, motherlang, combinations, jobs */} = this.state;
-    DatabaseApi.updateDocument('users', {name, surname, email, /*phone, address, country, motherlang, combinations, jobs*/}, id)
-    this.setState({name, surname, email, /*phone, address, country, motherlang, combinations, jobs*/});
+    const { id, name, surname, email, phone, address, country, motherlang, combinations, jobs, comments} = this.state;
+    const success = DatabaseApi.updateDocument('users', {name, surname, email, phone, address, country, motherlang, combinations, jobs, comments}, id)
+    //this.setState({name, surname, email, phone, address, country, motherlang, combinations, jobs});
+    success && this.resetInput()
+    success && alert('The info had been save correctly');
   }
 
   handleUserInput (e) {
@@ -71,7 +84,16 @@ class ProfileForm extends Component {
   };
 
   resetInput = () => {
-    this.setState({ value: '' });
+    this.setState({ name: '', 
+    surname: '', 
+    email: '', 
+    phone: '', 
+    address: '', 
+    country: '', 
+    motherlang: '', 
+    combinations: [], 
+    jobs: [],
+    comments: ''});
     } 
 
   render() {
@@ -79,8 +101,7 @@ class ProfileForm extends Component {
 
     return (
       <div className="profile_form">
-        <form onSubmit={this.onSubmitForm}>
-    
+        <form onSubmit={this.onSubmitForm}>  
             <input name="name"
               type="text" 
               value={name} 
@@ -104,65 +125,39 @@ class ProfileForm extends Component {
               value={phone}
               placeholder="Contact phone"
               onChange={(event) => this.handleUserInput(event)}
-              /*required*//>
+              required/>
             <textarea name="address"
               type="text" 
               value={address} 
               placeholder="Address" 
               onChange={(event) => this.handleUserInput(event)}
-              /*required*//>
+              required/>
             <input name="country"
               type="text" 
               value={country}  
               placeholder="Country" 
               onChange={(event) => this.handleUserInput(event)}
-              /*required*//>
+              required/>
             <input name="motherlang"
               type="text" 
               value={motherlang}  
               placeholder="Mother language" 
               onChange={(event) => this.handleUserInput(event)}
-              /*required*//>
+              required/>
             <label htmlFor="combinationL">Language combinations</label>
             <MultiSelect name="combinations"
               items={combinationsItems}
               selectedItems={combinations}
-              onChange={(combinations) =>{this.handleMultiChange(combinations, 'combinations')}}
-              />
-              {/*{this.props.combinations.map((item, index) => (
-                <option key={index} value={item}>{item.name}</option>
-                <option key={'EN>FR'} value="EN>FR">EN>FR</option>
-                <option key={'EN>DE'} value="EN>DE">EN>DE</option>
-                <option key={'EN>SE'} value="EN>SE">EN>SE</option>
-                <option key={'EN>PT'} value="EN>PT">EN>PT</option>
-                <option key={'EN>IT'} value="EN>IT">EN>IT</option>
-                <option key={'EN>ES'} value="EN>ES">EN>ES</option>
-                <option key={'EN>NO'} value="EN>NO">EN>NO</option>
-                <option key={'EN>DA'} value="EN>DA">EN>DA</option>
-                )
-              )}
-           <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>*/}
-
+              onChange={(combinations) =>{this.handleMultiChange(combinations, 'combinations')}}/>  
             <label htmlFor="jobs">Types of jobs</label>
             <MultiSelect name="jobs"
               items={jobsItems}
               selectedItems={jobs}
-              onChange={(jobs) =>{this.handleMultiChange(jobs, 'jobs')}}
-              />
-                {/*<option value="technical">Technical jobs</option>
-                <option value="marketing">Marketing jobs</option>
-                <option value="medical">Medical jobs</option>
-                <option value="legal">Legal jobs</option>
-                <option value="mt">Machine Translation</option>
-                <option value="sworn">Sworn Translation</option>
-            <p>Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.</p>*/}
-
+              onChange={(jobs) =>{this.handleMultiChange(jobs, 'jobs')}}/>
             <textarea name="comments" 
             placeholder="Write your comments here..."></textarea>
-
             <button type="submit_profile" 
-            value="Submit"
-            onClick={this.resetInput}>Submit</button>
+            value="Submit">Submit</button>
           </form>
       </div>
     )

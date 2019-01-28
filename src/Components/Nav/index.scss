@@ -3,24 +3,26 @@
   margin:0;
   display:flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  align-content: flex-end;
-}
-.news, .jobs, .contact, .profile, a {
-  font-size: bold;
-  padding: 20px;
-  margin: 25px;
-  text-decoration: none;
-}
-a {
-}
-.news:hover, .jobs:hover, .contact:hover, .profile:hover, a:hover{
-  background: #A7FF83;
-  font-size: 25px;
-}
-.wrapper {
-  width: 80%;
-  margin: auto;
-  overflow:hidden;
-}
+  justify-content: flex-end;
 
+  .news_nav, .jobs_nav, .contact_nav, .profile_nav, .notif_nav, .search_nav, a {
+    justify-content: flex-end;
+    align-content: center;
+    font-size: bold;
+    border: 2px solid #A7FF83;
+    border-radius: 25px;
+    padding: 20px;
+    margin: 25px;
+    text-decoration: none;
+  }
+  .news:hover, .jobs:hover, .contact:hover, .profile:hover, a:hover{
+    font-size: 25px;
+    border-radius: 25px;
+    background: #A7FF83;
+  }
+  /*.wrapper {
+    width: 80%;
+    margin: auto;
+    overflow:hidden;
+  }*/
+}

@@ -7,13 +7,10 @@
   height: 20vh;
   min-height: 5vh;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
   font-size: calc(8px + 2vmin);
   color: #071A52;
-  
-  
+
   .logo { 
     display: flex;
     flex-direction: row;
@@ -21,15 +18,5 @@
     align-content: flex-start;
     padding-top: 10px;
     height: 250px;
-  }
-  
-  .title {
-    justify-content: center;
-  }
-
-  a {
-    text-decoration:none;
-    font-size: 25px;
-    display: flex;
   }
 }

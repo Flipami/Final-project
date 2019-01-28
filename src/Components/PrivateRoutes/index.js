@@ -9,7 +9,7 @@ class PrivateRouteHome extends Component {
     const { user, componentAdmin, componentUser } = this.props;
     const ComponentUser = componentUser;
     const ComponentAdmin = componentAdmin;
-    console.log('PrivateRouteHome', user)
+    //console.log('PrivateRouteHome', user)
     
     return (
       <Route render={(props) => (
