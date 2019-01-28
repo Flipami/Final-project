@@ -1,30 +1,35 @@
 import React, {Component} from 'react'
 import './index.scss';
+import AuthApi from '../../services/authApi'
 import Nav from '../Nav';
-import ProfileButton from '../ProfileButton';
 
 
 class Header extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = { 
+      user:'userData'
+    }
+  }
+
+  logout = () => {
+    const error = AuthApi.logout();
+
+    if(!error){
+      console.log("There is an error in the log out process!");
+    }
   }
 
   render() {
+
     return(
-      <header className="Header">
-        <div className="logo">
-          <img src={require('./mylogo.gif')} className="logo" alt="logo" />
-        </div>
-        <Nav />
-        <ProfileButton />
+      <header className="header">
+        <img src={require('./mylogo.gif')} className="logo" alt="logo" /> 
+        <Nav shouldDisplayNav={this.props.displayNav} />
       </header>
     )
   }
 }
-
-//<img src={logo} className="logo" alt="logo" />
-Header.displayName = Header
 
 export default Header
 

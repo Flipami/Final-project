@@ -1,60 +1,65 @@
-.body {
-    margin: 0;
-    padding: 0;
-}
-.login_box {
-    width:320px;
-    height: 420px;
-    left: 50%;
-    top: 50%;
-    position: absolute;
-    padding: 70px 30px;
-}
-.login_pic {
-    height: 100px;
-    width: 100px;
-    border-radius:50%;
-    position: absolute;
-    top: -50%;    
-}
-.h1{
-    margin:0;
-    padding: 0 0 20px;
-    text-align: center;
-    font-size: 22px;
-}
-.login_box p {
-    margin: 0;
-    padding: 0;
-    font-size: bold;
-}
-.login_box input {
-    width: 100px;
-    margin-bottom: 20px;
-}
-.username, .password {
-    border:none;
-    border-bottom: 1px solid  #071A52;
-    background: transparent;
-    outline: none;
-    height: 40px;
-    font-size: 16px;
-}
-.submit {
-    border: none;
-    outline: none;
-    height: 40px;
-    background: #A7FF83;
-    color: #071A52;
-    font-size: 18px;
-    border-radius: 25px;
-}
-.submit: hover {
-    cursor: pointer;
-    background:#A7ff83;
-}
 
-.login_box a {
-    text-decoration: none;
-    font-size: 12px;
+.login_form {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    border: 5px solid #086972;
+    justify-content: center;
+    
+    div{
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
+
+    .login_pic {
+        height: 75px;
+        padding: 10px;
+        border-radius: 50%;
+        border: 5px solid #071A52;
+        align-self: center;
+    }
+    .h1{
+        margin:0;
+        padding: 0 0 20px;
+        text-align: center;
+        font-size: 25px;
+    }
+    .login_form input {
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 5vh;
+        width: 50vw;
+        margin-bottom: 20px;
+    }
+    .loginEmail, .loginPassword {
+        border:none;
+        border-bottom: 1px solid  #071A52;
+        background: transparent;
+        //outline: none;
+        font-size: 30px;
+    }
+    .submit_login{
+        border: none;
+        outline: none;
+        height: 40px;
+        width: 150px;
+        background: #A7FF83;
+        color: #071A52;
+        font-size: 18px;
+        border-radius: 25px;
+    }
+    .submit_login:hover {
+        cursor: pointer;
+        background:#17B978;
+    }
+
+    .login_form a {
+        font-size: bold;
+        padding: 20px;
+        margin: 25px;
+        color: #071A52;
+        text-decoration: none;
+    }
 }

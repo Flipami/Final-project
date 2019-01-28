@@ -8,3 +8,14 @@ The main object is that translators have the access to the translations and avoi
 ## Funtional description
 
 ## Funtional description map
+
+## Technical description
+
+    ### Block diagram
+    
+    ### Component diagram
+
+    ### Data model diagram
+
+## Appi test coverage
+Here you could see the test that I have done with my Appi.
