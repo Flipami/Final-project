@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import ContactForm from '../../Components/ContactForm';
-
+import ContactForm from '../../Components/ContactList/ContactForm';
 
 class Contact extends Component {
     

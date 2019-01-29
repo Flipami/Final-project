@@ -1,14 +1,17 @@
 
 .news_form {
     display:flex;
-    flex-direction: row;
-    align-content: center;
-    border:none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 5px;
-    padding: 5px;
+    padding: 10px;
     background: transparent;
     font-size: 20px;
-
+  form {
+    border: 2px solid  #071A52;
+    border-radius: 25px;
+  }
   input{
     font-family: 'Handlee';
     font-size: 25px;

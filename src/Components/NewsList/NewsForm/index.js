@@ -38,7 +38,8 @@ class NewsForm extends Component {
         const { language_comb, wc, type, delivery, file_type } = this.state
         return (
             <div className="news_form">
-                <form onSubmit={this.newJobToBePublished}>
+                <h1>Create a new job from this form</h1>
+                <form className="news_form" onSubmit={this.newJobToBePublished}>
                     <input type="text" value={language_comb} onChange={(e) => this.setState({language_comb:e.target.value})} placeholder="Language combination" required/>
                     <input type="text" value={wc} onChange={(e) => this.setState({wc:e.target.value})} placeholder="Word count for the job" required/>
                     <input type="text" value={type} onChange={(e) => this.setState({type:e.target.value})} placeholder="Type of job" required/>

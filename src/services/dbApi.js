@@ -111,7 +111,7 @@ export default class DatabaseApi {
             const databaseObject = doc.data();
             databaseObject.id = doc.id;
             result.push(databaseObject);
-            console.log('databaseObject --->', databaseObject)
+            //console.log('databaseObject --->', databaseObject)
           });
     
         } catch (error) {

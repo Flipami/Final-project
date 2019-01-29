@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import './index.scss';
+import NewsItem from '../../Components/NewsList/NewsItem';
 
 class HomeAdmin extends Component {
     render() {
+        const { user, job  } = this.props
+        console.log('from home_client -->', job, user)
         return (
             <div className="user_home">
                 <h1>Admin Home page</h1>
                 <div className="home_news">
                     <h1>NEWS</h1>
-                    <p>Aqui veremos las noticias que se han publicado y habrá un botón que nos llevará a la creación de noticias</p>
+                    {/*<NewsItem />*/}
                 </div>
                 <div className="home_jobs">
                     <div className="home_done">

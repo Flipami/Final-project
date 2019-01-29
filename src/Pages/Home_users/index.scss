@@ -1,27 +1,28 @@
 .user_home {
     display: flex;
-    flex-direction: rows;
-}
-.home_news {
-    display:flex;
-    height: 200px;
-    width: 600px;
-    border: 2px solid #071A52;
-    border-radius: 25px;
-    margin:10px;
-}
-.home_jobs {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.home_done, .home_ongoing {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 200px;
-    width: 300px;
-    border: 2px solid #071A52;
-    border-radius:25px;
-    margin:10px;
+
+    .home_news {
+        display:flex;
+        flex-direction: row;
+        height: 200px;
+        width: 600px;
+        border: 2px solid #071A52;
+        border-radius: 25px;
+        margin:10px;
+    }
+    .home_jobs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .home_done, .home_ongoing {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 200px;
+        width: 300px;
+        border: 2px solid #071A52;
+        border-radius:25px;
+        margin:10px;
+    }
 }

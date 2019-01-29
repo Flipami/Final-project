@@ -8,7 +8,8 @@ import Main from '../../Pages/Main';
 import PrivateRoute from '../PrivateRoutes';
 import HomeUser from '../../Pages/Home_users';
 import HomeAdmin from '../../Pages/Home_client';
-import News from '../../Pages/News';
+import NewsUsers from '../../Pages/NewsUsers';
+import NewsClient from '../../Pages/NewsClient';
 import Jobs from '../../Pages/Jobs';
 import Contact from '../../Pages/Contact';
 import Profile from '../../Pages/Profile';
@@ -57,7 +58,7 @@ class App extends Component {
             <Switch>
               <Route exact path='/' component={Main}/>
               <PrivateRoute exact path="/home" componentAdmin={HomeAdmin} componentUser={HomeUser}/>}
-              <PrivateRoute exact path="/news" componentAdmin={News} componentUser={News}/>}
+              <PrivateRoute exact path="/news" componentAdmin={NewsClient} componentUser={NewsUsers}/>}
               <PrivateRoute exact path="/jobs"   componentAdmin={Jobs} componentUser={Jobs}/>}
               <PrivateRoute exact path="/profile" componentUser={Profile}/>}
               <PrivateRoute exact path="/contact" componentUser={Contact}/>}

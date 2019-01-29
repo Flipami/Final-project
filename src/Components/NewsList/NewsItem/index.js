@@ -3,8 +3,10 @@ import './index.scss';
 
 
 class NewItem extends Component {
+    
     render() {
         const {newJobInfo, reserved, user, booked} = this.props
+        //console.log('in NewItem -->', newJobInfo)
         return (
             <div className={`newsItem ${reserved && 'newItemReserved'}`}>
                 <h1><strong>{newJobInfo.language_comb}</strong></h1> 
