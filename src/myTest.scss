@@ -1,0 +1,26 @@
+//Del menú de puntitos
+
+@media screen and (max-width: 800px)
+.menu_bar .bt-menu {
+    display: block;
+    padding: 20px;
+    color: #fff;
+    overflow: hidden;
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: none;
+}
+@media screen and (max-width: 800px)
+header nav {
+    width: 80%;
+    height: calc(100% - 80px);
+    right: 100%;
+    margin: 0;
+    position: fixed;
+    overflow: scroll;
+}
+header nav {
+    background: #023859;
+    z-index: 1000;
+    max-width: 1000px;
+}

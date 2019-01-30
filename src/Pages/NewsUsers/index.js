@@ -9,7 +9,7 @@ class News extends Component {
         super(props)
 
         this.state = {
-            job: []
+            job: [],
         }
     }
 
@@ -44,14 +44,14 @@ class News extends Component {
     }
 
     makeBook = (job) => { 
-        debugger
         const allJobs = this.state.job
         const updatedAllJobs = allJobs.map((offer) => { 
             if(offer.id === job.id) {
              offer.reserved = !offer.reserved
-             //console.log( 'offer', offer)
+             console.log('test', offer.reserved)
             }
-            return offer        
+            const myOffer = DatabaseApi.updateDocument('newjobs', {reserved:true})
+            myOffer && alert('The info had been save correctly')     
         })
         this.setState({jobData: updatedAllJobs})
     }
@@ -59,8 +59,8 @@ class News extends Component {
     render() {
         const { job } = this.state
         const { user } = this.props
-        //console.log('News -->', user)
-        //console.log('jobs in News page -->', job)
+        console.log('News -->', user)
+        console.log('jobs in News page -->', job)
         return (
             <div className="newsList">
             {job && job.map(job => <NewsItem key={job.id} newJobInfo={job} reserved={job.reserved} booked={this.makeBook} user={user} /> )}

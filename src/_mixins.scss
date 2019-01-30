@@ -1,0 +1,33 @@
+@import "vars.scss";
+
+@mixin margins(){
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+@mixin headings ($bgColor, $color, $weight, $position){
+    background-color: $bgColor;
+    color: $color;
+    font-weight: $weight;
+    text-align: $position;
+}
+
+@mixin borders ($radius){
+    border: 1px solid grey;
+    border-radius: $radius;
+}
+
+@mixin display_setts ($display, $direction, $justCont, $align){
+    display: $display;
+    flex-direction: $direction;
+    justify-content: $justCont;
+    align-content: $align;
+}
+
+@mixin links($color){
+    text-decoration: none;
+    font-weight: bold;
+    color:$color;
+}

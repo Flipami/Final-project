@@ -70,7 +70,7 @@ export default class DatabaseApi {
           }
           
         } catch (error) {
-                console.log("​DatabaseApi -> }catch -> error", error)
+                console.log("​DatabaseApi -> catch -> error", error)
         }
     
         return success;

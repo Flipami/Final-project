@@ -40,7 +40,7 @@
   label {
     font-size: 25px
   }
-  .combinations, .jobs, .combinationsItems, .jobsItems {
+  .combinations, .jobs, .combinationsItems, .jobsItems, .file {
     font-family: 'Handlee';
     font-size: 20px;
     display:flex;
@@ -51,6 +51,9 @@
     margin: 5px;
     margin-bottom: 20px;
     padding: 5px;
+  }
+  .iframe {
+    content-disposition: attachment;
   }
   .submit_profile button{
     border: none;

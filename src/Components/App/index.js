@@ -10,6 +10,7 @@ import HomeUser from '../../Pages/Home_users';
 import HomeAdmin from '../../Pages/Home_client';
 import NewsUsers from '../../Pages/NewsUsers';
 import NewsClient from '../../Pages/NewsClient';
+import CreateNewUsers from '../../Pages/CreateNewUser';
 import Jobs from '../../Pages/Jobs';
 import Contact from '../../Pages/Contact';
 import Profile from '../../Pages/Profile';
@@ -59,11 +60,12 @@ class App extends Component {
               <Route exact path='/' component={Main}/>
               <PrivateRoute exact path="/home" componentAdmin={HomeAdmin} componentUser={HomeUser}/>}
               <PrivateRoute exact path="/news" componentAdmin={NewsClient} componentUser={NewsUsers}/>}
-              <PrivateRoute exact path="/jobs"   componentAdmin={Jobs} componentUser={Jobs}/>}
+              <PrivateRoute exact path="/jobs" componentAdmin={Jobs} componentUser={Jobs}/>}
               <PrivateRoute exact path="/profile" componentUser={Profile}/>}
               <PrivateRoute exact path="/contact" componentUser={Contact}/>}
               <PrivateRoute exact path="/notifications" componentAdmin={Notifications} />}
               <PrivateRoute exact path="/search" componentAdmin={Search}/>
+              <PrivateRoute exact path="/create" componentAdmin={CreateNewUsers}/>
               <Redirect to='/'/>
             </Switch>
         </div>

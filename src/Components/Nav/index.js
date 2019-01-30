@@ -26,18 +26,19 @@ class Nav extends Component {
     return(
         <React.Fragment>
           {this.props.shouldDisplayNav && user.profile === 'user'  && <div className="nav_bar">
-            <Link className="news_nav" to="/news">News</Link>
-            <Link className="jobs_nav" to="/jobs">Jobs</Link>
-            <Link className="contact_nav" to="/contact">Contact</Link>
-            <Link className="profile_nav" to="/profile">Profile</Link>
-            {user && <a href="/" onClick={this.logout}>Log me out</a>}
+            <Link className="news_nav" to="/news"><span><i class="fas fa-newspaper"></i></span>News</Link>
+            <Link className="jobs_nav" to="/jobs"><span><i class="fas fa-book-open"></i></span>Jobs</Link>
+            <Link className="contact_nav" to="/contact"><span><i class="fas fa-envelope"></i></span>Contact</Link>
+            <Link className="profile_nav" to="/profile"><span><i class="fas fa-id-card"></i></span>Profile</Link>
+            {user && <a href="/" onClick={this.logout}><span><i class="fas fa-lock"></i></span>Log me out</a>}
           </div>}
           {this.props.shouldDisplayNav && user.profile==='admin' && <div className="nav_bar">
-            <Link className="news_nav" to="/news">News</Link>
-            <Link className="jobs_nav" to="/jobs">Jobs</Link>
-            <Link className="notif_nav" to="/notifications">Notifications</Link>
-            <Link className="search_nav" to="/search">Search</Link>
-            {user && <a href="/" onClick={this.logout}>Log me out</a>}
+            <Link className="news_nav" to="/news"><span><i class="far fa-newspaper"></i></span>News</Link>
+            <Link className="jobs_nav" to="/jobs"><span><i class="fas fa-book-open"></i></span>Jobs</Link>
+            <Link className="notif_nav" to="/notifications"><span><i class="fas fa-inbox"></i></span>Notifications</Link>
+            <Link className="search_nav" to="/search"><span><i class="fas fa-search"></i></span>Search</Link>
+            <Link className="create_nav" to="/create"><span><i class="fas fa-edit"></i></span>New User</Link>
+            {user && <a href="/" onClick={this.logout}><span><i class="fas fa-lock"></i></span>Log me out</a>}
           </div>}
         </React.Fragment>
     )
@@ -50,6 +51,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Nav);
-
-
-
