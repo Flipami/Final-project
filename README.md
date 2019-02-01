@@ -14,24 +14,29 @@ You could also see and *download the final translated document* for the offer fi
 You would *receive messages* from the translators, that you could see in the **Notifications section**. 
 The **Search section** is under construction, but would allow you to filter jobs by delivery date, by translator, by any field that you´ll consider that could be important.
 
-As **User** you are able to see the *new offers* that could fit your profile. From the **Offers section** you could see any offer published in the last month that could be relevant for you, and from there you could book it and if you do so, download the original file to start working.
-In the **Job section** you´ll find all the jobs that you had book in the last month, and you are able to upload your final translation in the same section. The jobs appear as Done if the delivery date is earlier than today´s date, or Ongoing if the date is later.
-In the **Contact section** you could contact us with your doubts or queries, and leave your phone number to solve it quicker.
-In the **Profile section** you could update your personal and professional data, and upload your CV if you´d like.
+As **User** you are able to see the *new offers* that could fit your profile. From the **Offers section** you could *see any offer published* in the last month that could be relevant for you, and from there you could *book it* and if you do so, *download the original file* to start working.
+In the **Job section** you´ll find all the jobs that you had book in the last month, and you are able to *upload your final translation* in the same section. The jobs appear as Done if the delivery date is earlier than today´s date, or Ongoing if the date is later.
+In the **Contact section** you could *contact us* with your doubts or queries, and leave your phone number to solve it quicker.
+In the **Profile section** you could *update your personal and professional data, and upload your CV*if you´d like.
 
 ## Funtional description map
-![GitHub Logo](src/images/Funtional description.png)
+![Funtional description map](https://github.com/Flipami/Final-project/blob/develop/src/images/Funtional%20description.png)
 
 ## Technical description
 This Final project is designed for laptop devises. The front is created using ReactJs, the back is based on Firebase for the storaged using Redux for the data management.
 Written in Javascript, with some feature of ES6.
 The design is implemented with SASS.
 
-## Block diagram map
-    
-    ### Component diagram
+The hosting is done by Firebase at https://final-project-be258.firebaseapp.com/
 
-    ### Data model diagram
+## Block diagram
+![Block diagram](https://github.com/Flipami/Final-project/blob/develop/src/images/Blockl%20diagram.png)
+    
+## Component diagram
+![Block diagram](https://github.com/Flipami/Final-project/blob/develop/src/images/.png)
+
+## Data model diagram
+![Block diagram](https://github.com/Flipami/Final-project/blob/develop/src/images/.png)
 
 ## Appi test coverage
-Here you could see the test that I have done with my Appi.
+I do not have any test to be shown.
