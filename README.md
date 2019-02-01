@@ -30,13 +30,13 @@ The design is implemented with SASS.
 The hosting is done by Firebase at https://final-project-be258.firebaseapp.com/
 
 ## Block diagram
-![Block diagram](https://github.com/Flipami/Final-project/blob/develop/src/images/Blockl%20diagram.png)
+![Block diagram](https://github.com/Flipami/Final-project/blob/develop/src/images/Block%20diagram.png)
     
 ## Component diagram
-![Block diagram](https://github.com/Flipami/Final-project/blob/develop/src/images/.png)
+![Component diagram](https://github.com/Flipami/Final-project/blob/develop/src/images/Component%20diagram.png)
 
 ## Data model diagram
-![Block diagram](https://github.com/Flipami/Final-project/blob/develop/src/images/.png)
+![Block diagram](https://github.com/Flipami/Final-project/blob/develop/src/images/Data%20model%20diagram.png)
 
 ## Appi test coverage
 I do not have any test to be shown.
