@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './index.scss';
-//import DatabaseApi from '../../services/dbApi';
 import AuthApi from '../../services/authApi'
 import LogIn from '../../Components/Log_in';
 import { withRouter } from "react-router";
@@ -44,7 +43,7 @@ class Main extends Component {
     render() {
 
         return (
-            <div>
+            <div className="main">
                 <h1 className="title">
                     Translation Jobs
                 </h1>

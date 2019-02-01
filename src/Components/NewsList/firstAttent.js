@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import DatabaseApi from '../../services/dbApi';
-import NewsItem from '../../Components/News/NewsItem';
-import NewsForm from '../../Components/News/NewsForm';
+import NewsItem from '../../Components/NewsList/NewsItem';
+//import NewsForm from '../../Components/NewsLists/NewsForm';
 import {setJobInfo} from '../../redux/actions/jobActions';
 import { connect } from 'react-redux';
 
-class News extends Component {
+class NewsList extends Component {
     constructor(props){
         super(props)
 
@@ -25,7 +25,7 @@ class News extends Component {
     loadData = async () => {
         let jobData = null;
         try{
-             jobData = await DatabaseApi.getCollection('newjobs')
+            jobData = await DatabaseApi.getCollection('newjobs')
             console.log('jobData in News -->', jobData)
         } catch(error) {
             console.error(error);
@@ -44,14 +44,13 @@ class News extends Component {
     }
 
     makeBook = (job) => { 
-        debugger
         const allJobs = this.state.job
         const updatedAllJobs = allJobs.map((offer) => { 
             if(offer.id === job.id) {
              offer.reserved = !offer.reserved
-             console.log( 'offer', offer)
-             return offer
+             //console.log( 'offer', offer)
             }
+             return offer
         })
         this.setState({jobData: updatedAllJobs})
     }
@@ -65,7 +64,7 @@ class News extends Component {
             <div className="newsList">
             {job && job.map(job => <NewsItem key={job.id} newJobInfo={job}  reserved={job.reserved} booked={this.makeBook} user={user} /> )}
 
-            {user.profile==='admin' && <NewsForm />}
+           {/*{user.profile==='admin' && <NewsForm />}*/}
             </div>
             )
     }
@@ -75,7 +74,7 @@ const mapDispatchToProps =(dispatch) => {
     return { setJob: (jobInfo) => { dispatch(setJobInfo(jobInfo))}}
   }
 
-export default connect(null, mapDispatchToProps)(News);
+export default connect(null, mapDispatchToProps)(NewsList);
 
 /*  crear el sign up --> función de Cristiam
 coger el id y crear el usuario, 

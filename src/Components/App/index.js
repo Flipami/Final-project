@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import AuthApi from '../../services/authApi';
-import DatabaseApi from '../../services/dbApi'
+import DatabaseApi from '../../services/dbApi';
 import './index.scss';
-import Header from '../Header'
-import Main from '../../Pages/Main';
+import Header from '../Header';
+import Loading from '../Loading';
 import PrivateRoute from '../PrivateRoutes';
+import Footer from '../Footer';
+import Main from '../../Pages/Main';
 import HomeUser from '../../Pages/Home_users';
 import HomeAdmin from '../../Pages/Home_client';
-import News from '../../Pages/News';
+import NewsUsers from '../../Pages/NewsUsers';
+import NewsClient from '../../Pages/NewsClient';
+//import CreateNewUsers from '../../Pages/CreateNewUser';
 import Jobs from '../../Pages/Jobs';
 import Contact from '../../Pages/Contact';
 import Profile from '../../Pages/Profile';
@@ -45,28 +49,30 @@ class App extends Component {
 
   render() {
 
-    const { user, loading } = this.state;
-    console.log('user -->', user)
-
-    if(loading) return <div>Loading</div>;
+    const { user, loading } = this.state
+   
 
     return (
       <Router>
       <div className="App">
+          {loading ? <Loading/> : ''}
           <Header displayNav={user!== null} />
             <Switch>
               <Route exact path='/' component={Main}/>
               <PrivateRoute exact path="/home" componentAdmin={HomeAdmin} componentUser={HomeUser}/>}
-              <PrivateRoute exact path="/news" componentAdmin={News} componentUser={News}/>}
-              <PrivateRoute exact path="/jobs"   componentAdmin={Jobs} componentUser={Jobs}/>}
+              <PrivateRoute exact path="/offers" componentAdmin={NewsClient} componentUser={NewsUsers}/>}
+              <PrivateRoute exact path="/jobs" /*componentAdmin={Jobs}*/ componentUser={Jobs}/>}
               <PrivateRoute exact path="/profile" componentUser={Profile}/>}
               <PrivateRoute exact path="/contact" componentUser={Contact}/>}
               <PrivateRoute exact path="/notifications" componentAdmin={Notifications} />}
               <PrivateRoute exact path="/search" componentAdmin={Search}/>
+              {/*<PrivateRoute exact path="/create" componentAdmin={CreateNewUsers}/>*/}
               <Redirect to='/'/>
             </Switch>
+            <Footer/>
         </div>
       </Router>
+      
     );
   }
 }

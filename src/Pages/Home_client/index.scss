@@ -1,29 +1,31 @@
 .admin_home {
-    display: flex;
-    flex-direction: rows;
-    justify-content: center;
-    align-items: space-around;
+    width: 80%;
+    margin: 20px auto;
+    font-size: 20px;
+    h1 {
+        height: 85%;
+        width: 100%;
+    }
 }
-.home_news {
-    display:flex;
-    height: 200mh;
-    width: 600mw;
-    border: 2px solid #071A52;
-    border-radius: 25px;
-    margin:10px;
-}
-.home_jobs {
+.home-container {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
+    margin: 100px auto;
 }
-.home_done, .home_ongoing {
+.home_offers, .home_notif, .home_search {
     display: flex;
-    flex-direction: column;
+    flex-direction: columns;
     justify-content: center;
-    height: 200px;
-    width: 300px;
-    border: 2px solid #071A52;
-    border-radius:25px;
-    margin:10px;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    padding: 5px;
+    margin: 5px;
+    color: #2C3E50;
+    flex: 1 0 320px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    h1 {
+        display:flex;
+    }
 }

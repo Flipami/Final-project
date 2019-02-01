@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './index.scss';
 import DatabaseApi from '../../services/dbApi';
+import StorageApi from '../../services/storageApi';
 import MultiSelect from "@kenshooui/react-multi-select";
 import { withRouter } from "react-router";
 import { connect } from 'react-redux';
@@ -39,13 +40,14 @@ class ProfileForm extends Component {
               { id: 5, label: "Sworn Translations"}
             ],
             jobs:[ ],
+            file:'',
             comments:'',
         }
     }
 
   async componentDidMount(){
     //sacar la información de redux y conseguir el ID
-    const { id, name, surname, email, phone, address, country, motherlang, combinations, jobs, comments } = this.props.user
+    const { id, name, surname, email, phone, address, country, motherlang, combinations, jobs, file, comments } = this.props.user
     this.setState({ id, 
       name: name || '', 
       surname: surname || '', 
@@ -56,6 +58,7 @@ class ProfileForm extends Component {
       motherlang: motherlang || '', 
       combinations: combinations || [], 
       jobs: jobs || [],
+      file: file || '',
       comments: comments || '' })
     console.log("componentDidMount --- user",this.props.user);
 
@@ -65,8 +68,8 @@ class ProfileForm extends Component {
   onSubmitForm = async (e) => {
     e.preventDefault();
 
-    const { id, name, surname, email, phone, address, country, motherlang, combinations, jobs, comments} = this.state;
-    const success = DatabaseApi.updateDocument('users', {name, surname, email, phone, address, country, motherlang, combinations, jobs, comments}, id)
+    const { id, name, surname, email, phone, address, country, motherlang, combinations, jobs, file, comments} = this.state;
+    const success = DatabaseApi.updateDocument('users', {name, surname, email, phone, address, country, motherlang, combinations, jobs, file, comments}, id)
     //this.setState({name, surname, email, phone, address, country, motherlang, combinations, jobs});
     success && this.resetInput()
     success && alert('The info had been save correctly');
@@ -83,6 +86,13 @@ class ProfileForm extends Component {
     this.setState({[name]: selectedItems })
   };
 
+  onFileSelected = (e) => {
+    const file = e.target.files[0];
+    StorageApi.uploadFile('file',file, (fileURL) => {
+      this.setState({file: fileURL});
+    });
+  }
+
   resetInput = () => {
     this.setState({ name: '', 
     surname: '', 
@@ -93,15 +103,22 @@ class ProfileForm extends Component {
     motherlang: '', 
     combinations: [], 
     jobs: [],
+    file: '',
     comments: ''});
     } 
+  removeDocument = (e) => {
+    const {file} = this.state
+    StorageApi.deleteFile('file', file, (fileURL) => {
+      this.setState({file: ''});
+    });
+  }
 
   render() {
-    const {name, surname, email, phone, address, country, motherlang, combinationsItems, combinations, jobsItems, jobs } = this.state;
+    const {name, surname, email, phone, address, country, motherlang, combinationsItems, combinations, jobsItems, jobs, file } = this.state;
 
     return (
       <div className="profile_form">
-        <form onSubmit={this.onSubmitForm}>  
+        <form className="profile_form" onSubmit={this.onSubmitForm}>  
             <input name="name"
               type="text" 
               value={name} 
@@ -146,16 +163,28 @@ class ProfileForm extends Component {
               required/>
             <label htmlFor="combinationL">Language combinations</label>
             <MultiSelect name="combinations"
+              className="combinations-profile"
               items={combinationsItems}
               selectedItems={combinations}
               onChange={(combinations) =>{this.handleMultiChange(combinations, 'combinations')}}/>  
             <label htmlFor="jobs">Types of jobs</label>
             <MultiSelect name="jobs"
+              className="jobs-profile"
               items={jobsItems}
               selectedItems={jobs}
               onChange={(jobs) =>{this.handleMultiChange(jobs, 'jobs')}}/>
             <textarea name="comments" 
             placeholder="Write your comments here..."></textarea>
+            <input name="file"
+              type="file" 
+              value={file.name} 
+              placeholder="Add your file here"
+              onChange={(e) => { this.onFileSelected(e) }} 
+              ref={(ref) => {this.fileInputRef = ref}}/>
+            {file && <div className="file-profile">
+            <a href={file} className="file-profile" target="_blank">Download CV</a>
+            <i className="far fa-trash-alt" onClick={(file) => {this.removeDocument = file}}></i>
+            </div>}
             <button type="submit_profile" 
             value="Submit">Submit</button>
           </form>

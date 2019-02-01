@@ -1,65 +1,78 @@
-
 .login_form {
     display: flex;
     flex-direction: column;
-    padding: 5px;
-    border: 5px solid #086972;
     justify-content: center;
-    
+    align-content: center;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    padding: 5px;
+    margin:5px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
     div{
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-content: center;
     }
-
     .login_pic {
-        height: 75px;
+        height: 65px;
         padding: 10px;
         border-radius: 50%;
-        border: 5px solid #071A52;
+        border: 1px solid #2C3E50;
         align-self: center;
     }
     .h1{
         margin:0;
         padding: 0 0 20px;
         text-align: center;
-        font-size: 25px;
+        font-size: 20px;
     }
     .login_form input {
         display:flex;
         flex-direction: column;
         justify-content: center;
+        align-content: center;
         height: 5vh;
         width: 50vw;
         margin-bottom: 20px;
     }
     .loginEmail, .loginPassword {
-        border:none;
-        border-bottom: 1px solid  #071A52;
+        border: none;
+        border-bottom: 1px solid  #2C3E50;
         background: transparent;
-        //outline: none;
-        font-size: 30px;
+        font-size: 20px;
     }
     .submit_login{
+        align-self: center;
         border: none;
         outline: none;
         height: 40px;
         width: 150px;
-        background: #A7FF83;
-        color: #071A52;
+        background: #ABEBC6;
+        color: #273746;
         font-size: 18px;
         border-radius: 25px;
     }
     .submit_login:hover {
         cursor: pointer;
-        background:#17B978;
+        background:#58D68D;
+        color: #273746;
     }
-
-    .login_form a {
+    .login-link {
         font-size: bold;
-        padding: 20px;
-        margin: 25px;
-        color: #071A52;
+        padding: 10px;
+        color: #273746;
         text-decoration: none;
+    }
+    .login-link:hover{
+        cursor: pointer;
+        color:#58D68D;
+    }
+}
+
+@media only screen and (min-width: 600px){   
+    .h1{
+        font-size: 25px;
     }
 }

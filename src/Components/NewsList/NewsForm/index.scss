@@ -1,18 +1,29 @@
-
 .news_form {
     display:flex;
-    flex-direction: row;
-    align-content: center;
-    border:none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 5px;
-    padding: 5px;
+    padding: 10px;
     background: transparent;
     font-size: 20px;
-
+  form {
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    padding: 5px;
+    margin: 5px;
+    color: #2C3E50;
+    flex: 1 0 320px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  h1 {
+    font-size: 25px;
+    color: #2C3E50;
+  }
   input{
     font-family: 'Handlee';
-    font-size: 25px;
-    color: #071A52;  
+    font-size: 20px;
+    color: #2C3E50;  
     display:flex;
     flex-direction: row;
     justify-content: center;
@@ -23,29 +34,31 @@
     padding: 5px;
   }
   .submit_new {
+    font-family: 'Handlee';
     border: none;
     height: 40px;
     width: 150px;
-    background: #A7FF83;
-    color: #071A52;
+    background: #ABEBC6;
+    color: black;
     font-size: 18px;
     border-radius: 25px;
     outline: none;
   }
   .submit_new:hover {
     cursor: pointer;
-    background:#17B978;
+    background:#58D68D;
+    font-weight: bold;
   }
 }
 .alert {
   font-family: 'Handlee';
   padding: 20px;
-  background-color: #17B978;
-  color:  #071A52;
+  background-color: #ABEBC6;
+  color:  #2C3E50;
 }
 .closebtn {
   margin-left: 15px;
-  color:  #071A52;
+  color:  #2C3E50;
   font-weight: bold;
   float: right;
   font-size: 22px;
@@ -53,7 +66,17 @@
   cursor: pointer;
   transition: 0.3s;
 }
-
 .closebtn:hover {
   color: black;
+}
+
+@media only screen and (min-width: 600px){
+  .news_form {
+    h1 {
+      font-size: 30px;
+    }
+    input{
+      font-size: 25px;
+    }
+  }
 }

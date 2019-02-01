@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
-//import HomeUser from '../../Pages/Home_users'
+import { Route} from 'react-router-dom';
 
 
 class PrivateRouteHome extends Component {
@@ -9,7 +8,6 @@ class PrivateRouteHome extends Component {
     const { user, componentAdmin, componentUser } = this.props;
     const ComponentUser = componentUser;
     const ComponentAdmin = componentAdmin;
-    //console.log('PrivateRouteHome', user)
     
     return (
       <Route render={(props) => (

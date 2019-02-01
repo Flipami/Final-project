@@ -35,10 +35,18 @@ export default class AuthApi {
         return error;
     }
   
-    
     static registerAuthObserver(callback){
       firebase.auth().onAuthStateChanged((user) => {
         callback(user);
+      });
+    }
+
+    static async getID(idToken) {
+      firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+        // Send token to your backend via HTTPS
+        // ...
+      }).catch(function(error) {
+        // Handle error
       });
     }
     /*1.Cuando el usuario se registre, completa el flujo de acceso para el proveedor de autenticación del usuario hasta el paso anterior a llamar a uno de los métodos Auth.signInWith. Por ejemplo, obtén el token del ID de Google, el token de acceso a Facebook o la dirección de correo electrónico y la contraseña del usuario.

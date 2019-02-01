@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './index.scss';
-import DatabaseApi from '../../services/dbApi';
+import DatabaseApi from '../../../services/dbApi';
 
 
 class ContactForm extends Component {
@@ -36,7 +36,7 @@ class ContactForm extends Component {
     const { name, surname, email, phone, message } = this.state;
     return(
       <div className="contact_form">
-         <form onSubmit={this.sendContact}>
+         <form className="contact_form" onSubmit={this.sendContact}>
             <input type="text" 
               value={name} 
               onChange={(e) => this.setState({name:e.target.value})} 
