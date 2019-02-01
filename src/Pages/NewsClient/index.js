@@ -3,6 +3,7 @@ import './index.scss';
 import DatabaseApi from '../../services/dbApi';
 import NewsItem from '../../Components/NewsList/NewsItem';
 import NewsForm from '../../Components/NewsList/NewsForm';
+import Loading from '../../Components/Loading';
 import {setJobInfo} from '../../redux/actions/jobActions';
 import { connect } from 'react-redux';
 
@@ -17,8 +18,6 @@ class News extends Component {
 
     async componentDidMount () {
         const responseData = await this.loadData();
-        //console.log('test in componentDidMount -->', responseData, this.props.user)
-        //const filterData = this.filterData(responseData)
         this.props.setJob(responseData);
         this.setState({job: responseData, loading: false});
     }
@@ -28,7 +27,6 @@ class News extends Component {
         let jobData = null;
         try{
             jobData = await DatabaseApi.getCollection('newjobs')
-            //console.log('jobData in News in loadData -->', jobData)
         } catch(error) {
             console.error(error);
         }
@@ -38,13 +36,11 @@ class News extends Component {
     render() {
         const { job } = this.state
         const { user } = this.props
-        //console.log('News -->', user)
-        //console.log('jobs in News page -->', job)
         return (
-            <div>
+            <div className="newsListClient">
                 <h1>List of all the published jobs</h1>
                 <div className="newsListClient">
-                    {job && job.map(job => <NewsItem key={job.id} newJobInfo={job} reserved={job.reserved} booked={this.makeBook} user={user} /> )}
+                    {job ? job.map(job => <NewsItem key={job.id} newJobInfo={job} reserved={job.reserved} booked={this.makeBook} user={user} /> ) : <Loading />}
                 </div>
                 <NewsForm />
             </div>

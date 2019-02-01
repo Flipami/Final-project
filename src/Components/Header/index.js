@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import './index.scss';
 import AuthApi from '../../services/authApi'
 import Nav from '../Nav';
@@ -16,7 +16,7 @@ class Header extends Component {
     const error = AuthApi.logout();
 
     if(!error){
-      console.log("There is an error in the log out process!");
+      alert("There is an error in the log out process!");
     }
   }
 
@@ -24,7 +24,7 @@ class Header extends Component {
 
     return(
       <header className="header">
-        <img src={require('./mylogo.gif')} className="logo" alt="logo" /> 
+        {/*<img src={require('./mylogo.gif')} className="logo" alt="logo" />*/}
         <Nav shouldDisplayNav={this.props.displayNav} />
       </header>
     )

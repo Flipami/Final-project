@@ -1,18 +1,45 @@
+.main {
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+}
 .title {
     font-family: 'Handlee', cursive;
-    font-size: 60px;
-    text-align: center;
     height: 10vh;
+    font-size: 35px;
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
     color: #071A52;
     padding:0;
     margin:0;
 }
 p {
     margin: 25px;
-    font-size: 25px;
+    font-size: 20px;
     color: #086972;
+}
+
+@media screen and (min-width: 600px){
+    .title {
+    font-family: 'Handlee', cursive;
+    font-size: 60px;
+    text-align: center;
+    height: 10vh;
+    color: #071A52;
+    padding:0;
+    margin:0;
+    }
+    p {
+        margin: 25px;
+        font-size: 25px;
+        color: #086972;
+    }
 }

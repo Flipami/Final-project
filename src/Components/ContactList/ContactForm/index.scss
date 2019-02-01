@@ -1,7 +1,6 @@
-
 .contact_form {
   display:flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-content: space-between;
   align-items: center;
@@ -10,11 +9,10 @@
   padding: 5px;
   background: transparent;
   font-size: 20px;
-
   input{
     font-family: 'Handlee';
-    font-size: 25px;
-    color: #071A52;  
+    font-size: 20px;
+    color: #273746;  
     display:flex;
     flex-direction: row;
     justify-content: center;
@@ -27,7 +25,7 @@
   }
   textarea {
     font-family: 'Handlee';
-    font-size: 25px;
+    font-size: 20px;
     display:flex;
     flex-direction: row;
     justify-content: center;
@@ -37,48 +35,36 @@
     margin-bottom: 20px;
     padding: 5px;
   }
-  label {
-    font-size: 25px
-  }
-  select {
-    font-family: 'Handlee';
-    font-size: 20px;
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 5vh;
-    width: 20vw;
-    margin: 5px;
-    margin-bottom: 20px;
-    padding: 5px;
-  }
-  .submit_contact button {
+  .submit_contact {
     display:flex;
     flex-direction: column;
     justify-content: center;
+    text-align: -webkit-center;
+    align-self: center;
     border: none;
     height: 40px;
     width: 150px;
-    background: #A7FF83;
-    color: #071A52;
+    background: #ABEBC6;
+    color: #273746;
     font-size: 18px;
     border-radius: 25px;
     outline: none;
   }
   .submit_contact button:hover {
     cursor: pointer;
-    background:#17B978;
+    background:#58D68D;
+    align-self: center;
   }
 }
 .alert {
   font-family: 'Handlee';
   padding: 20px;
-  background-color: #17B978;
-  color:  #071A52;
+  background-color: #58D68D;
+  color:  #273746;
 }
 .closebtn {
   margin-left: 15px;
-  color:  #071A52;
+  color:  #273746;
   font-weight: bold;
   float: right;
   font-size: 22px;
@@ -89,4 +75,16 @@
 
 .closebtn:hover {
   color: black;
+}
+
+@media screen and (min-width: 600px){  
+  .contact_form {
+    font-size: 20px;
+    input{
+      font-size: 25px;
+    }
+    textarea {
+      font-size: 25px;
+    }
+  }
 }

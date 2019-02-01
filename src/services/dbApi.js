@@ -91,12 +91,13 @@ export default class DatabaseApi {
     static async getDocument(collectionName, filterName, filterValue){
         const collectionRef = db.collection(collectionName);
         const query = collectionRef.where(filterName, "==", filterValue);
-        let result = null;
+        let result = [];
     
         const querySnapshot = await query.get();
         querySnapshot.forEach((doc) => {
-          result = doc.data();
-          result.id = doc.id;
+          const newDoc = doc.data();
+          newDoc.id = doc.id;
+          result.push(newDoc)
         });
     
         return result;

@@ -17,4 +17,17 @@ export default class StorageApi {
         });
     });
   }
+
+  static deleteFile(folder, file, callback) {
+    // Create a reference to the file to delete
+    const storageRef = firebase.storage().ref();
+    var desertRef = storageRef.child(`${folder}/${+(new Date())}-${file.name}`);
+
+    // Delete the file
+    desertRef.delete().then(function() {
+      // File deleted successfully
+    }).catch(function(error) {
+      console.log(error)
+    });
+  }
 }

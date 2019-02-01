@@ -47,7 +47,7 @@ class LogIn extends Component {
                        
                         <button type="submit" className="submit_login" onClick={this.resetInput}>Log in</button>
                         
-                        <Link to="/contact">Lost your password</Link>
+                        <Link to="/contact" className="login-link">Lost your password</Link>
                 </form>
             </div>
         );

@@ -1,14 +1,17 @@
 .newsItem {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-content: space-between;
     align-items: center;
-    border: 2px solid  #17B978;
-    border-radius: 25px;
-    padding:5px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    padding: 5px;
     margin: 5px;
-    color: #071A52;
+    color: #2C3E50;
+    flex: 1 0 320px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    h1 {
+        color: #2C3E50;
+    }
 }
 
 .newItemReserved {
@@ -22,12 +25,12 @@ button{
     height: 40px;
     width: 150px;
     background: #A7FF83;
-    color: #071A52;
+    color: #273746;
     font-size: 18px;
     border-radius: 25px;
     outline: none;
 }
 button:hover {
     cursor: pointer;
-    background:#17B978;
+    background:#58D68D;
 }

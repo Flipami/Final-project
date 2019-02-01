@@ -6,7 +6,6 @@ class ContactItem extends Component {
 
     render() {
         const { newContactInfo } = this.props
-        //console.log('contactItem -->', newContactInfo)
         return (
             <div className="contactItem">
                 <h1><strong>{newContactInfo.name}</strong></h1> 

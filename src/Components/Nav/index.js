@@ -6,40 +6,36 @@ import { connect } from 'react-redux';
 
 
 class Nav extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-
-    }
-  }
 
   logout = () => {
     const error = AuthApi.logout();
-
     if(!error){
-      console.log("Has salido de la aplicación");
+      alert("Has salido de la aplicación");
     }
   }
 
   render() {
     const { user } = this.props
+
     return(
         <React.Fragment>
-          {this.props.shouldDisplayNav && user.profile === 'user'  && <div className="nav_bar">
-            <Link className="news_nav" to="/news"><span><i class="fas fa-newspaper"></i></span>News</Link>
-            <Link className="jobs_nav" to="/jobs"><span><i class="fas fa-book-open"></i></span>Jobs</Link>
-            <Link className="contact_nav" to="/contact"><span><i class="fas fa-envelope"></i></span>Contact</Link>
-            <Link className="profile_nav" to="/profile"><span><i class="fas fa-id-card"></i></span>Profile</Link>
-            {user && <a href="/" onClick={this.logout}><span><i class="fas fa-lock"></i></span>Log me out</a>}
-          </div>}
-          {this.props.shouldDisplayNav && user.profile==='admin' && <div className="nav_bar">
-            <Link className="news_nav" to="/news"><span><i class="far fa-newspaper"></i></span>News</Link>
-            <Link className="jobs_nav" to="/jobs"><span><i class="fas fa-book-open"></i></span>Jobs</Link>
-            <Link className="notif_nav" to="/notifications"><span><i class="fas fa-inbox"></i></span>Notifications</Link>
-            <Link className="search_nav" to="/search"><span><i class="fas fa-search"></i></span>Search</Link>
-            <Link className="create_nav" to="/create"><span><i class="fas fa-edit"></i></span>New User</Link>
-            {user && <a href="/" onClick={this.logout}><span><i class="fas fa-lock"></i></span>Log me out</a>}
-          </div>}
+          <div className="menu">
+            {this.props.shouldDisplayNav && (user.profile === 'user') && <div className="nav_bar">
+              <Link className="offer_nav" to="/offers"><span><i className="fas fa-newspaper"></i></span>Offers</Link>
+              <Link className="jobs_nav" to="/jobs"><span><i className="fas fa-book-open"></i></span>Jobs</Link>
+              <Link className="contact_nav" to="/contact"><span><i className="fas fa-envelope"></i></span>Contact</Link>
+              <Link className="profile_nav" to="/profile"><span><i className="fas fa-id-card"></i></span>Profile</Link>
+              {user && <a href="/" className="logout" onClick={this.logout}><span><i className="fas fa-lock"></i></span>Log me out</a>}
+            </div>}
+            {this.props.shouldDisplayNav && (user.profile ==='admin') && <div className="nav_bar">
+              <Link className="offer_nav" to="/offers"><span><i className="far fa-newspaper"></i></span>Offers</Link>
+              {/*<Link className="jobs_nav" to="/jobs"><span><i className="fas fa-book-open"></i></span>Jobs</Link>*/}
+              <Link className="notif_nav" to="/notifications"><span><i className="fas fa-inbox"></i></span>Notifications</Link>
+              <Link className="search_nav" to="/search"><span><i className="fas fa-search"></i></span>Search</Link>
+              {/*<Link className="create_nav" to="/create"><span><i className="fas fa-edit"></i></span>New User</Link>*/}
+              {user && <a href="/" className="logout" onClick={this.logout}><span><i className="fas fa-lock"></i></span>Log me out</a>}
+            </div>}
+          </div>
         </React.Fragment>
     )
   }

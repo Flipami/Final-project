@@ -106,13 +106,19 @@ class ProfileForm extends Component {
     file: '',
     comments: ''});
     } 
+  removeDocument = (e) => {
+    const {file} = this.state
+    StorageApi.deleteFile('file', file, (fileURL) => {
+      this.setState({file: ''});
+    });
+  }
 
   render() {
     const {name, surname, email, phone, address, country, motherlang, combinationsItems, combinations, jobsItems, jobs, file } = this.state;
 
     return (
       <div className="profile_form">
-        <form onSubmit={this.onSubmitForm}>  
+        <form className="profile_form" onSubmit={this.onSubmitForm}>  
             <input name="name"
               type="text" 
               value={name} 
@@ -157,11 +163,13 @@ class ProfileForm extends Component {
               required/>
             <label htmlFor="combinationL">Language combinations</label>
             <MultiSelect name="combinations"
+              className="combinations-profile"
               items={combinationsItems}
               selectedItems={combinations}
               onChange={(combinations) =>{this.handleMultiChange(combinations, 'combinations')}}/>  
             <label htmlFor="jobs">Types of jobs</label>
             <MultiSelect name="jobs"
+              className="jobs-profile"
               items={jobsItems}
               selectedItems={jobs}
               onChange={(jobs) =>{this.handleMultiChange(jobs, 'jobs')}}/>
@@ -173,7 +181,10 @@ class ProfileForm extends Component {
               placeholder="Add your file here"
               onChange={(e) => { this.onFileSelected(e) }} 
               ref={(ref) => {this.fileInputRef = ref}}/>
-            {file && <div><iframe src={file.name}></iframe><i class="far fa-trash-alt"></i></div>}
+            {file && <div className="file-profile">
+            <a href={file} className="file-profile" target="_blank">Download CV</a>
+            <i className="far fa-trash-alt" onClick={(file) => {this.removeDocument = file}}></i>
+            </div>}
             <button type="submit_profile" 
             value="Submit">Submit</button>
           </form>

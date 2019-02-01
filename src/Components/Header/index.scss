@@ -1,35 +1,16 @@
 
 .header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
   width: 100%;
   font-family: 'Handlee', cursive;
   font-size: 60%;
   text-align: center;
-  background-color: #17B978;
+  background-color: #D5F5E3;
   height: 20vh;
   min-height: 5vh;
-  display: flex;
-  align-items: center;
   font-size: calc(8px + 2vmin);
-  color: #071A52;
-
-  .logo { 
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-content: flex-start;
-    padding-top: 10px;
-    height: 250px;
-  }
-}
-
-@media only screen and (min-width: 600px){
-  width: 100%;
-  .logo { 
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-content: flex-start;
-    padding-top: 10px;
-    height: 250px;
-  }
+  color: #2C3E50;
 }

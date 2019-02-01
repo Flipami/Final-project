@@ -1,33 +1,31 @@
 import React, { Component } from 'react';
+import './index.scss';
 import DatabaseApi from '../../services/dbApi';
 import NewsItem from '../../Components/NewsList/NewsItem';
-import {setJobInfo} from '../../redux/actions/jobActions';
+import Loading from '../../Components/Loading';
+import { setJobInfo } from '../../redux/actions/jobActions';
 import { connect } from 'react-redux';
 
 class News extends Component {
-    constructor(props){
-        super(props)
 
-        this.state = {
-            job: [],
-        }
+    state = {
+        filterData:null,
+        loading: true,
     }
 
-    async componentDidMount () {
+    async componentDidMount() {
         const responseData = await this.loadData();
-        //console.log('test in componentDidMount -->', responseData, this.props.user)
         const filterData = this.filterData(responseData)
         this.props.setJob(responseData);
-        this.setState({job: filterData, loading: false});
+        this.setState({loading:false, filterData})
     }
-
 
     loadData = async () => {
         let jobData = null;
-        try{
+        try {
             jobData = await DatabaseApi.getCollection('newjobs')
-            //console.log('jobData in News in loadData -->', jobData)
-        } catch(error) {
+            
+        } catch (error) {
             console.error(error);
         }
         return jobData;
@@ -35,47 +33,45 @@ class News extends Component {
 
     filterData = (responseData) => {
         const userCombinations = this.props.user.combinations
-        let allowedCombinations=[]
+        let allowedCombinations = []
         for (let i = 0; i < userCombinations.length; i++) {
-           allowedCombinations.push(userCombinations[i].label);
+            allowedCombinations.push(userCombinations[i].label);
         }
         const displayCombinations = responseData.filter((offer) => allowedCombinations.includes(offer.language_comb))
-        return displayCombinations 
+        return displayCombinations
     }
 
-    makeBook = (job) => { 
-        const allJobs = this.state.job
-        const updatedAllJobs = allJobs.map((offer) => { 
-            if(offer.id === job.id) {
-             offer.reserved = !offer.reserved
-             console.log('test', offer.reserved)
-            }
-            const myOffer = DatabaseApi.updateDocument('newjobs', {reserved:true})
-            myOffer && alert('The info had been save correctly')     
-        })
-        this.setState({jobData: updatedAllJobs})
+    makeBook = async (job) => {
+        const { user }= this.props
+        const allJobs = this.props.job
+        const jobToUpdate = allJobs.find((offer) => offer.id === job.id)
+        jobToUpdate.reserved = !jobToUpdate.reserved
+        jobToUpdate.reservedBy = user.id
+        await DatabaseApi.updateDocument('newjobs', jobToUpdate, jobToUpdate.id)    
+        const updateJobs = allJobs.map(j => j.id === jobToUpdate.id ? jobToUpdate : j)
+        this.props.setJob(updateJobs)
     }
 
     render() {
-        const { job } = this.state
+        const { filterData } = this.state
         const { user } = this.props
-        console.log('News -->', user)
-        console.log('jobs in News page -->', job)
+
         return (
             <div className="newsList">
-            {job && job.map(job => <NewsItem key={job.id} newJobInfo={job} reserved={job.reserved} booked={this.makeBook} user={user} /> )}
+                {filterData ? filterData.map(job => <NewsItem key={job.id} newJobInfo={job} reserved={job.reserved} booked={this.makeBook} user={user} />) : <Loading/>}
             </div>
-            )
+        )
     }
-}           
+}
 
-const mapDispatchToProps =(dispatch) => {
-    return { setJob: (jobInfo) => { dispatch(setJobInfo(jobInfo))}}
+const mapStateToProps = (state) => {
+    return {
+      job: state.jobReducer.job
+    }
   }
 
-export default connect(null, mapDispatchToProps)(News);
+const mapDispatchToProps = (dispatch) => {
+    return { setJob: (jobInfo) => { dispatch(setJobInfo(jobInfo)) } }
+}
 
-/*  crear el sign up --> función de Cristiam
-coger el id y crear el usuario, 
-añadir a favoritos --> campo de reservado a true en la coleccion, bloquear click en CSS
-                --> array de trabajos asignados*/
+export default connect(mapStateToProps, mapDispatchToProps)(News);
